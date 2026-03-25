@@ -38,7 +38,7 @@ def render(df_mb: pd.DataFrame, df_pam: pd.DataFrame) -> None:
             else:
                 st.plotly_chart(
                     fig_crop_by_uf(df_pam, crop),
-                    use_container_width=True,
+                    width="stretch",
                 )
 
     st.divider()
@@ -52,7 +52,7 @@ def render(df_mb: pd.DataFrame, df_pam: pd.DataFrame) -> None:
     )
     st.plotly_chart(
         fig_scatter_correlation(df_mb, df_pam),
-        use_container_width=True,
+        width="stretch",
     )
 
     st.divider()
@@ -66,5 +66,5 @@ def render(df_mb: pd.DataFrame, df_pam: pd.DataFrame) -> None:
     )
     st.plotly_chart(
         fig_indirect_deforestation_index(df_mb),
-        use_container_width=True,
+        width="stretch",
     )

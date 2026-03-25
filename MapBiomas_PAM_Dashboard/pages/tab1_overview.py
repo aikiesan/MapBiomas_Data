@@ -66,11 +66,11 @@ def render(df_mb: pd.DataFrame, df_pam: pd.DataFrame) -> None:
 
     st.plotly_chart(
         fig_national_trend(df_mb, df_pam, transitions=selected_trends),
-        use_container_width=True,
+        width="stretch",
     )
 
     st.divider()
 
     # ── Stacked bar by UF ────────────────────────────────────────────────────
     st.subheader("Área Acumulada por Estado (UF)")
-    st.plotly_chart(fig_stacked_bar_uf(df_mb), use_container_width=True)
+    st.plotly_chart(fig_stacked_bar_uf(df_mb), width="stretch")

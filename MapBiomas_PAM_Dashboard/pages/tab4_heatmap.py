@@ -53,7 +53,7 @@ def render(df_mb: pd.DataFrame) -> None:
     ufs_filter = selected_ufs if selected_ufs else None
 
     fig = fig_heatmap(df_mb, transition=selected_transition, ufs=ufs_filter, top_n=top_n)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # Quick stats below
     sub = df_mb[df_mb["transicao"] == selected_transition]
