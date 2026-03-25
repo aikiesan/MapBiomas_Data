@@ -60,7 +60,7 @@ def _render_mb(df: pd.DataFrame) -> None:
     display["area_km2"] = display["area_km2"].round(4)
 
     st.caption(f"{len(display):,} linhas | {display['area_km2'].sum():,.1f} km² total")
-    st.dataframe(display, use_container_width=True, hide_index=True, height=400)
+    st.dataframe(display, width="stretch", hide_index=True, height=400)
 
     _summary_stats(display, "area_km2", "Área (km²)")
     _download_button(display, "transicoes_filtrado.csv")
@@ -106,7 +106,7 @@ def _render_pam(df: pd.DataFrame) -> None:
     display = display[cols].rename(columns={"cultura_label": "cultura"})
 
     st.caption(f"{len(display):,} linhas | {display['area_ha'].sum():,.0f} ha total")
-    st.dataframe(display, use_container_width=True, hide_index=True, height=400)
+    st.dataframe(display, width="stretch", hide_index=True, height=400)
 
     _summary_stats(display, "area_ha", "Área Colhida (ha)")
     _download_button(display, "pam_filtrado.csv")
@@ -121,7 +121,7 @@ def _summary_stats(df: pd.DataFrame, col: str, label: str) -> None:
             "min": "mínimo", "25%": "quartil 25%", "50%": "mediana",
             "75%": "quartil 75%", "max": "máximo",
         })
-        st.dataframe(stats.to_frame(label), use_container_width=False)
+        st.dataframe(stats.to_frame(label), width="content")
 
 
 def _download_button(df: pd.DataFrame, filename: str) -> None:

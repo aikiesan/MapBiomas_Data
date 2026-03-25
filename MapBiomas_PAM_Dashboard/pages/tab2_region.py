@@ -56,7 +56,7 @@ def render(df_mb: pd.DataFrame, df_pam: pd.DataFrame) -> None:
         else:
             st.plotly_chart(
                 fig_region_transitions(df_mb, selected_region),
-                use_container_width=True,
+                width="stretch",
             )
             # Summary table
             total = (
@@ -67,7 +67,7 @@ def render(df_mb: pd.DataFrame, df_pam: pd.DataFrame) -> None:
             )
             total.columns = ["Transição", "Área Total (km²)"]
             total["Área Total (km²)"] = total["Área Total (km²)"].round(1)
-            st.dataframe(total, use_container_width=True, hide_index=True)
+            st.dataframe(total, width="stretch", hide_index=True)
 
     with col_right:
         st.subheader("Produção Agrícola PAM")
@@ -76,7 +76,7 @@ def render(df_mb: pd.DataFrame, df_pam: pd.DataFrame) -> None:
         else:
             st.plotly_chart(
                 fig_region_pam(df_pam, cod_rgint),
-                use_container_width=True,
+                width="stretch",
             )
 
     # ── Dual time series ─────────────────────────────────────────────────────
@@ -85,7 +85,7 @@ def render(df_mb: pd.DataFrame, df_pam: pd.DataFrame) -> None:
     if cod_rgint is not None:
         st.plotly_chart(
             fig_timeseries_pair(df_mb, df_pam, selected_region, cod_rgint),
-            use_container_width=True,
+            width="stretch",
         )
     else:
         st.info("Código de região PAM não encontrado para esta seleção.")

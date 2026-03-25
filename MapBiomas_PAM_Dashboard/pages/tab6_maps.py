@@ -187,7 +187,7 @@ def _render_subtab_rgint(df_mb: pd.DataFrame) -> None:
         margin={"r": 0, "t": 40, "l": 0, "b": 0},
         coloraxis_colorbar=dict(title=color_label),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # Top-10 regions table for the last year
     last_year = full_df["ano_fim"].max()
@@ -198,7 +198,7 @@ def _render_subtab_rgint(df_mb: pd.DataFrame) -> None:
         .reset_index(drop=True)
     )
     with st.expander(f"Top 10 Regiões — {last_year}"):
-        st.dataframe(top10, use_container_width=True)
+        st.dataframe(top10, width="stretch")
 
 
 # ---------------------------------------------------------------------------
@@ -278,7 +278,7 @@ def _render_subtab_pam_muni() -> None:
         margin={"r": 0, "t": 40, "l": 0, "b": 0},
         coloraxis_colorbar=dict(title="Área (ha)"),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # Bar chart: top 15 municipalities
     top15 = (
@@ -297,7 +297,7 @@ def _render_subtab_pam_muni() -> None:
         color_continuous_scale="YlGn",
     )
     fig_bar.update_layout(yaxis={"categoryorder": "total ascending"}, showlegend=False)
-    st.plotly_chart(fig_bar, use_container_width=True)
+    st.plotly_chart(fig_bar, width="stretch")
 
 
 # ---------------------------------------------------------------------------
@@ -367,7 +367,7 @@ def _render_subtab_biomes() -> None:
         labels={"ano_destino": "Ano", "area_km2": "Área (km²)", "transicao_label": "Transição"},
     )
     fig_area.update_layout(height=380, legend=dict(orientation="h", y=-0.3))
-    st.plotly_chart(fig_area, use_container_width=True)
+    st.plotly_chart(fig_area, width="stretch")
 
     # --- Stacked area per biome for a single transition ---------------------
     st.markdown("---")
@@ -396,7 +396,7 @@ def _render_subtab_biomes() -> None:
         labels={"ano_destino": "Ano", "area_km2": "Área (km²)", "bioma": "Bioma"},
     )
     fig_biome.update_layout(height=360, legend=dict(orientation="h", y=-0.3))
-    st.plotly_chart(fig_biome, use_container_width=True)
+    st.plotly_chart(fig_biome, width="stretch")
 
     # --- Sankey diagram (cumulative 2008–2024) -------------------------------
     st.markdown("---")
@@ -442,7 +442,7 @@ def _render_subtab_biomes() -> None:
                 height=450,
                 font_size=13,
             )
-            st.plotly_chart(fig_sankey, use_container_width=True)
+            st.plotly_chart(fig_sankey, width="stretch")
 
     # --- Biome map: cumulative conversion intensity -------------------------
     st.markdown("---")
@@ -468,7 +468,7 @@ def _render_subtab_biomes() -> None:
         title="Conversão Acumulada 2008–2024 por Bioma",
     )
     fig_map.update_layout(height=500, margin={"r": 0, "t": 40, "l": 0, "b": 0})
-    st.plotly_chart(fig_map, use_container_width=True)
+    st.plotly_chart(fig_map, width="stretch")
 
 
 # ---------------------------------------------------------------------------
@@ -561,7 +561,7 @@ def _render_subtab_coverage() -> None:
         margin={"r": 0, "t": 40, "l": 0, "b": 0},
         coloraxis_colorbar=dict(title="Área (ha)"),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # --- Trend chart for top soy-expanding municipalities -------------------
     if selected_class == "soja":
@@ -608,7 +608,7 @@ def _render_subtab_coverage() -> None:
                 labels={"ano": "Ano", "area_ha": "Área (ha)", "municipality": "Município"},
             )
             fig_trend.update_layout(height=380, legend=dict(orientation="h", y=-0.4))
-            st.plotly_chart(fig_trend, use_container_width=True)
+            st.plotly_chart(fig_trend, width="stretch")
 
     # --- Stacked bar: evolution of selected class top 15 municipalities -----
     st.markdown("---")
@@ -627,7 +627,7 @@ def _render_subtab_coverage() -> None:
         title=f"Top 15 — {COVERAGE_DISPLAY.get(selected_class, selected_class)} {selected_year}",
     )
     fig_bar.update_layout(yaxis={"categoryorder": "total ascending"}, showlegend=False)
-    st.plotly_chart(fig_bar, use_container_width=True)
+    st.plotly_chart(fig_bar, width="stretch")
 
 
 # ---------------------------------------------------------------------------
