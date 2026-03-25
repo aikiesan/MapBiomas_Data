@@ -212,10 +212,17 @@ def _render_subtab_pam_muni() -> None:
         "Dados disponíveis a cada 3 anos nos CSVs municipais."
     )
 
-    pam = load_pam_municipios()
     geojson_str, meta_df = load_municipios_geo()
     geojson = json.loads(geojson_str)
 
+    if not geojson.get("features"):
+        st.warning(
+            "Shapefile de municípios não encontrado (`data/shapefiles/BR_Municipios_2024/BR_Municipios_2024.shp`). "
+            "Adicione o arquivo `.shp` para habilitar os mapas por município."
+        )
+        return
+
+    pam = load_pam_municipios()
     col1, col2, col3 = st.columns(3)
     with col1:
         crop_opts = sorted(pam["cultura"].unique())
@@ -483,8 +490,22 @@ def _render_subtab_coverage() -> None:
     )
 
     cov = load_coverage_municipios()
+    if cov.empty:
+        st.warning(
+            "Arquivo de cobertura não encontrado (`data/processed/MB_col10_municipios.csv`). "
+            "Adicione o arquivo para habilitar os mapas de cobertura do solo."
+        )
+        return
+
     geojson_str, muni_meta = load_municipios_geo()
     geojson = json.loads(geojson_str)
+
+    if not geojson.get("features"):
+        st.warning(
+            "Shapefile de municípios não encontrado (`data/shapefiles/BR_Municipios_2024/BR_Municipios_2024.shp`). "
+            "Adicione o arquivo `.shp` para habilitar os mapas por município."
+        )
+        return
 
     col1, col2, col3 = st.columns(3)
     with col1:
