@@ -117,6 +117,13 @@ def _render_subtab_rgint(df_mb: pd.DataFrame) -> None:
     geojson_str, meta_df = load_rgint_geo()
     geojson = json.loads(geojson_str)
 
+    if meta_df.empty:
+        st.warning(
+            "Shapefile de Regiões Intermediárias não encontrado. "
+            "Verifique se `data/shapefiles/RG2017_rgint/RG2017_rgint.shp` existe no repositório."
+        )
+        return
+
     col_ctrl1, col_ctrl2 = st.columns([1, 2])
     with col_ctrl1:
         group_options = [g for g in TRANSITION_GROUPS if g != "stable"]
@@ -215,14 +222,18 @@ def _render_subtab_pam_muni() -> None:
     geojson_str, meta_df = load_municipios_geo()
     geojson = json.loads(geojson_str)
 
-    if not geojson.get("features"):
+    if meta_df.empty or not geojson.get("features"):
         st.warning(
-            "Shapefile de municípios não encontrado (`data/shapefiles/BR_Municipios_2024/BR_Municipios_2024.shp`). "
-            "Adicione o arquivo `.shp` para habilitar os mapas por município."
+            "Shapefile de Municípios não encontrado (`data/shapefiles/BR_Municipios_2024/BR_Municipios_2024.shp`). "
+            "Este arquivo é excluído do repositório por ser muito grande (274 MB). "
+            "Para habilitar este mapa, adicione o shapefile ao servidor ou use Git LFS."
         )
         return
 
-    pam = load_pam_municipios()
+    if pam.empty:
+        st.warning("Dados PAM por município não encontrados. Verifique `data/raw/pam/DADOS_PAM_POR_MUNICIPIO_5_CULTURAS/`.")
+        return
+
     col1, col2, col3 = st.columns(3)
     with col1:
         crop_opts = sorted(pam["cultura"].unique())
@@ -321,6 +332,13 @@ def _render_subtab_biomes() -> None:
     biome_trans = load_biome_transitions()
     geojson_str, biome_meta = load_biomes_geo()
     geojson = json.loads(geojson_str)
+
+    if biome_trans.empty:
+        st.warning(
+            "Dados de transições por bioma não encontrados. "
+            "Verifique se `data/processed/CSV/MB_transicoes_bioma_2008_2024.csv` existe."
+        )
+        return
 
     all_biomes = sorted(biome_trans["bioma"].unique())
     col1, col2 = st.columns(2)
@@ -500,12 +518,11 @@ def _render_subtab_coverage() -> None:
     geojson_str, muni_meta = load_municipios_geo()
     geojson = json.loads(geojson_str)
 
-    if not geojson.get("features"):
+    if muni_meta.empty or not geojson.get("features"):
         st.warning(
-            "Shapefile de municípios não encontrado (`data/shapefiles/BR_Municipios_2024/BR_Municipios_2024.shp`). "
-            "Adicione o arquivo `.shp` para habilitar os mapas por município."
+            "Shapefile de Municípios não encontrado. O mapa não pode ser renderizado, "
+            "mas os gráficos de tendência abaixo ainda funcionarão."
         )
-        return
 
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -555,41 +572,41 @@ def _render_subtab_coverage() -> None:
             "Nenhum dado disponível para a combinação selecionada. "
             "Alguns municípios podem não ter correspondência exata de nome."
         )
-        return
+    elif muni_meta.empty:
+        st.info("Shapefile de municípios ausente — mapa não disponível. Veja os gráficos abaixo.")
+    else:
+        color_max = matched["area_ha"].quantile(0.97)
+        color_label_map = COVERAGE_DISPLAY.get(selected_class, selected_class)
 
-    color_max = matched["area_ha"].quantile(0.97)
-    color_label = COVERAGE_DISPLAY.get(selected_class, selected_class)
-
-    fig = px.choropleth_map(
-        matched,
-        geojson=geojson,
-        locations="cd_geocodigo",
-        featureidkey="properties.cd_geocodigo",
-        color="area_ha",
-        color_continuous_scale="Greens" if selected_class in ("floresta", "savana") else "YlOrBr",
-        range_color=(0, max(color_max, 1)),
-        map_style=_MAP_STYLE,
-        zoom=_BRAZIL_ZOOM if selected_uf == "Todos" else 5.5,
-        center={"lat": _BRAZIL_LAT, "lon": _BRAZIL_LON},
-        opacity=0.75,
-        hover_name="nm_mun",
-        hover_data={"area_ha": ":,.0f", "cd_geocodigo": False, "sigla_uf": True},
-        labels={"area_ha": "Área (ha)", "sigla_uf": "UF"},
-        title=f"{color_label} — {selected_year} (ha)",
-    )
-    fig.update_layout(
-        height=600,
-        margin={"r": 0, "t": 40, "l": 0, "b": 0},
-        coloraxis_colorbar=dict(title="Área (ha)"),
-    )
-    st.plotly_chart(fig, width="stretch")
+        fig = px.choropleth_map(
+            matched,
+            geojson=geojson,
+            locations="cd_geocodigo",
+            featureidkey="properties.cd_geocodigo",
+            color="area_ha",
+            color_continuous_scale="Greens" if selected_class in ("floresta", "savana") else "YlOrBr",
+            range_color=(0, max(color_max, 1)),
+            map_style=_MAP_STYLE,
+            zoom=_BRAZIL_ZOOM if selected_uf == "Todos" else 5.5,
+            center={"lat": _BRAZIL_LAT, "lon": _BRAZIL_LON},
+            opacity=0.75,
+            hover_name="nm_mun",
+            hover_data={"area_ha": ":,.0f", "cd_geocodigo": False, "sigla_uf": True},
+            labels={"area_ha": "Área (ha)", "sigla_uf": "UF"},
+            title=f"{color_label_map} — {selected_year} (ha)",
+        )
+        fig.update_layout(
+            height=600,
+            margin={"r": 0, "t": 40, "l": 0, "b": 0},
+            coloraxis_colorbar=dict(title="Área (ha)"),
+        )
+        st.plotly_chart(fig, width="stretch")
 
     # --- Trend chart for top soy-expanding municipalities -------------------
-    if selected_class == "soja":
+    if selected_class == "soja" and not muni_meta.empty:
         st.markdown("---")
         st.markdown("#### Crescimento de Soja: Top 10 Municípios")
 
-        # Compute growth 2008 → selected_year
         base_year = 2008
         soy_recent = cov[
             (cov["class_key"] == "soja") & (cov["ano"].isin([base_year, selected_year]))
@@ -631,24 +648,25 @@ def _render_subtab_coverage() -> None:
             fig_trend.update_layout(height=380, legend=dict(orientation="h", y=-0.4))
             st.plotly_chart(fig_trend, width="stretch")
 
-    # --- Stacked bar: evolution of selected class top 15 municipalities -----
-    st.markdown("---")
-    st.markdown(f"#### Top 15 Municípios — {COVERAGE_DISPLAY.get(selected_class, selected_class)} em {selected_year}")
+    # --- Stacked bar: top 15 municipalities for selected class ---------------
+    if not matched.empty:
+        st.markdown("---")
+        st.markdown(f"#### Top 15 Municípios — {COVERAGE_DISPLAY.get(selected_class, selected_class)} em {selected_year}")
 
-    top15 = matched.nlargest(15, "area_ha")[["nm_mun", "sigla_uf", "area_ha"]].copy()
-    top15["label"] = top15["nm_mun"] + " (" + top15["sigla_uf"] + ")"
-    fig_bar = px.bar(
-        top15.reset_index(drop=True),
-        x="area_ha",
-        y="label",
-        orientation="h",
-        color="area_ha",
-        color_continuous_scale="YlGn",
-        labels={"area_ha": "Área (ha)", "label": "Município"},
-        title=f"Top 15 — {COVERAGE_DISPLAY.get(selected_class, selected_class)} {selected_year}",
-    )
-    fig_bar.update_layout(yaxis={"categoryorder": "total ascending"}, showlegend=False)
-    st.plotly_chart(fig_bar, width="stretch")
+        top15 = matched.nlargest(15, "area_ha")[["nm_mun", "sigla_uf", "area_ha"]].copy()
+        top15["label"] = top15["nm_mun"] + " (" + top15["sigla_uf"] + ")"
+        fig_bar = px.bar(
+            top15.reset_index(drop=True),
+            x="area_ha",
+            y="label",
+            orientation="h",
+            color="area_ha",
+            color_continuous_scale="YlGn",
+            labels={"area_ha": "Área (ha)", "label": "Município"},
+            title=f"Top 15 — {COVERAGE_DISPLAY.get(selected_class, selected_class)} {selected_year}",
+        )
+        fig_bar.update_layout(yaxis={"categoryorder": "total ascending"}, showlegend=False)
+        st.plotly_chart(fig_bar, width="stretch")
 
 
 # ---------------------------------------------------------------------------
