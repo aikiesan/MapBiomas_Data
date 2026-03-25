@@ -139,12 +139,13 @@ if df_mb.empty:
 # Main tabs
 # ---------------------------------------------------------------------------
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "🌍 Visão Nacional",
     "📍 Regiões",
     "🌾 Culturas",
     "🔥 Heatmap",
     "📊 Dados",
+    "🗺 Mapas Espaciais",
 ])
 
 with tab1:
@@ -166,3 +167,7 @@ with tab4:
 with tab5:
     from pages.tab5_data import render as render_tab5
     render_tab5(df_mb, df_pam)
+
+with tab6:
+    from pages.tab6_maps import render as render_tab6
+    render_tab6(df_mb, df_pam)
