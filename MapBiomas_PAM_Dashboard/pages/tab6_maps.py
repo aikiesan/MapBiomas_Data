@@ -39,7 +39,7 @@ from utils.geo_data import (
 # Helpers
 # ---------------------------------------------------------------------------
 
-_MAPBOX_STYLE = "carto-positron"
+_MAP_STYLE = "carto-positron"
 _BRAZIL_LAT = -14.2
 _BRAZIL_LON = -51.9
 _BRAZIL_ZOOM = 3.5
@@ -165,7 +165,7 @@ def _render_subtab_rgint(df_mb: pd.DataFrame) -> None:
     full_df["ano_fim_str"] = full_df["ano_fim"].astype(str)
 
     color_label = "Área (km²)"
-    fig = px.choropleth_mapbox(
+    fig = px.choropleth_map(
         full_df,
         geojson=geojson,
         locations="zona_id",
@@ -173,7 +173,7 @@ def _render_subtab_rgint(df_mb: pd.DataFrame) -> None:
         color="area_km2",
         color_continuous_scale="YlOrRd",
         animation_frame="ano_fim_str",
-        mapbox_style=_MAPBOX_STYLE,
+        map_style=_MAP_STYLE,
         zoom=_BRAZIL_ZOOM,
         center={"lat": _BRAZIL_LAT, "lon": _BRAZIL_LON},
         opacity=0.75,
@@ -256,7 +256,7 @@ def _render_subtab_pam_muni() -> None:
     # For whole-Brazil view use simplified geojson; for single UF keep full detail
     color_max = filtered_pam["area_ha"].quantile(0.98)
 
-    fig = px.choropleth_mapbox(
+    fig = px.choropleth_map(
         filtered_pam,
         geojson=geojson,
         locations="cd_geocodigo",
@@ -264,7 +264,7 @@ def _render_subtab_pam_muni() -> None:
         color="area_ha",
         color_continuous_scale="YlGn",
         range_color=(0, max(color_max, 1)),
-        mapbox_style=_MAPBOX_STYLE,
+        map_style=_MAP_STYLE,
         zoom=_BRAZIL_ZOOM if selected_uf == "Todos" else 5.5,
         center={"lat": _BRAZIL_LAT, "lon": _BRAZIL_LON},
         opacity=0.75,
@@ -451,14 +451,14 @@ def _render_subtab_biomes() -> None:
     biome_intensity = (
         filtered.groupby(["CD_Bioma", "bioma"], as_index=False)["area_km2"].sum()
     )
-    fig_map = px.choropleth_mapbox(
+    fig_map = px.choropleth_map(
         biome_intensity,
         geojson=geojson,
         locations="CD_Bioma",
         featureidkey="properties.CD_Bioma",
         color="area_km2",
         color_continuous_scale="OrRd",
-        mapbox_style=_MAPBOX_STYLE,
+        map_style=_MAP_STYLE,
         zoom=_BRAZIL_ZOOM,
         center={"lat": _BRAZIL_LAT, "lon": _BRAZIL_LON},
         opacity=0.7,
@@ -539,7 +539,7 @@ def _render_subtab_coverage() -> None:
     color_max = matched["area_ha"].quantile(0.97)
     color_label = COVERAGE_DISPLAY.get(selected_class, selected_class)
 
-    fig = px.choropleth_mapbox(
+    fig = px.choropleth_map(
         matched,
         geojson=geojson,
         locations="cd_geocodigo",
@@ -547,7 +547,7 @@ def _render_subtab_coverage() -> None:
         color="area_ha",
         color_continuous_scale="Greens" if selected_class in ("floresta", "savana") else "YlOrBr",
         range_color=(0, max(color_max, 1)),
-        mapbox_style=_MAPBOX_STYLE,
+        map_style=_MAP_STYLE,
         zoom=_BRAZIL_ZOOM if selected_uf == "Todos" else 5.5,
         center={"lat": _BRAZIL_LAT, "lon": _BRAZIL_LON},
         opacity=0.75,
