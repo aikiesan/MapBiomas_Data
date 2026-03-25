@@ -45,11 +45,14 @@ df_pam_full = load_pam_by_region()
 # ---------------------------------------------------------------------------
 
 with st.sidebar:
-    st.image(
-        "https://mapbiomas.org/assets/images/logo.png",
-        width=160,
-        caption="MapBiomas × IBGE PAM",
-    )
+    try:
+        st.image(
+            "https://mapbiomas.org/assets/images/logo.png",
+            width=160,
+            caption="MapBiomas × IBGE PAM",
+        )
+    except Exception:
+        st.markdown("**MapBiomas × IBGE PAM**")
     st.title("Filtros Globais")
     st.caption("Os filtros abaixo se aplicam a todas as abas.")
 
@@ -149,25 +152,25 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
 ])
 
 with tab1:
-    from pages.tab1_overview import render as render_tab1
+    from tabs.tab1_overview import render as render_tab1
     render_tab1(df_mb, df_pam)
 
 with tab2:
-    from pages.tab2_region import render as render_tab2
+    from tabs.tab2_region import render as render_tab2
     render_tab2(df_mb, df_pam)
 
 with tab3:
-    from pages.tab3_crops import render as render_tab3
+    from tabs.tab3_crops import render as render_tab3
     render_tab3(df_mb, df_pam)
 
 with tab4:
-    from pages.tab4_heatmap import render as render_tab4
+    from tabs.tab4_heatmap import render as render_tab4
     render_tab4(df_mb)
 
 with tab5:
-    from pages.tab5_data import render as render_tab5
+    from tabs.tab5_data import render as render_tab5
     render_tab5(df_mb, df_pam)
 
 with tab6:
-    from pages.tab6_maps import render as render_tab6
+    from tabs.tab6_maps import render as render_tab6
     render_tab6(df_mb, df_pam)
