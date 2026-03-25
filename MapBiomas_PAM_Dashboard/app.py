@@ -45,14 +45,7 @@ df_pam_full = load_pam_by_region()
 # ---------------------------------------------------------------------------
 
 with st.sidebar:
-    try:
-        st.image(
-            "https://mapbiomas.org/assets/images/logo.png",
-            width=160,
-            caption="MapBiomas × IBGE PAM",
-        )
-    except Exception:
-        st.markdown("**MapBiomas × IBGE PAM**")
+    st.markdown("### 🌿 MapBiomas × IBGE PAM")
     st.title("Filtros Globais")
     st.caption("Os filtros abaixo se aplicam a todas as abas.")
 
