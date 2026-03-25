@@ -117,7 +117,9 @@ def load_municipios_geo() -> tuple[str, pd.DataFrame]:
     Returns (geojson_str, metadata_df).
     On missing file returns empty GeoJSON + empty DataFrame.
     metadata_df columns: cd_geocodigo (str), nm_mun (str), cd_rgint (int), sigla_uf (str)
-<<<<<<< HEAD
+    GeoJSON featureidkey: 'properties.cd_geocodigo'
+    Geometries are simplified to reduce payload size.
+    Returns empty GeoJSON and empty DataFrame if the shapefile is not found.
     """
     if not _MUN_SHP.exists():
         return _EMPTY_GEOJSON, pd.DataFrame(
@@ -125,18 +127,6 @@ def load_municipios_geo() -> tuple[str, pd.DataFrame]:
         )
 
     import geopandas as gpd
-=======
-    GeoJSON featureidkey: 'properties.cd_geocodigo'
-    Geometries are simplified to reduce payload size.
-
-    Returns empty GeoJSON and empty DataFrame if the shapefile is not found.
-    """
-    if not _MUN_SHP.exists():
-        empty_geojson = json.dumps({"type": "FeatureCollection", "features": []})
-        empty_meta = pd.DataFrame(columns=["cd_geocodigo", "nm_mun", "cd_rgint", "sigla_uf"])
-        return empty_geojson, empty_meta
-
->>>>>>> 00e020b0004de4ca42fd2a683ac835d4f044f29b
     gdf = gpd.read_file(_MUN_SHP)
     gdf = gdf.to_crs(epsg=4326)
 
@@ -268,9 +258,11 @@ def load_coverage_municipios() -> pd.DataFrame:
     Returns empty DataFrame if file is missing (it is gitignored by default).
 
     Output columns:
-<<<<<<< HEAD
         biome (str), state (str), state_acronym (str), municipality (str),
         class_key (str), ano (int), area_ha (float)
+
+    Only classes present in COVERAGE_CLASS_MAP are retained.
+    Returns empty DataFrame if the CSV is not found.
     """
     _EMPTY = pd.DataFrame(
         columns=["biome", "state", "state_acronym", "municipality", "class_key", "ano", "area_ha"]
@@ -278,20 +270,6 @@ def load_coverage_municipios() -> pd.DataFrame:
 
     if not _MB_COL10_CSV.exists():
         return _EMPTY
-=======
-        cd_geocodigo (str, 7-digit), municipio (str), biome (str),
-        state (str), class_key (str), ano (int), area_ha (float)
-
-    Only classes present in COVERAGE_CLASS_MAP are retained.
-    Area is in ha (original values are in ha from MapBiomas).
-
-    Returns empty DataFrame if the CSV is not found.
-    """
-    if not _MB_COL10_CSV.exists():
-        return pd.DataFrame(
-            columns=["biome", "state", "state_acronym", "municipality", "class_key", "ano", "area_ha"]
-        )
->>>>>>> 00e020b0004de4ca42fd2a683ac835d4f044f29b
 
     df = pd.read_csv(_MB_COL10_CSV, dtype=str)
 
