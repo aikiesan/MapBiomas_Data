@@ -1,7 +1,7 @@
 # Streamlit runtime output
 streamlit_out.txt
 streamlit_err.txt
-.streamlit/
+# .streamlit/ is tracked (contains deployment config)
 
 # Python
 __pycache__/

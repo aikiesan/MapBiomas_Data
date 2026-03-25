@@ -219,10 +219,10 @@ def _render_subtab_pam_muni() -> None:
         "Dados disponíveis a cada 3 anos nos CSVs municipais."
     )
 
-    pam = load_pam_municipios()
     geojson_str, meta_df = load_municipios_geo()
     geojson = json.loads(geojson_str)
 
+<<<<<<< HEAD
     if meta_df.empty:
         st.warning(
             "Shapefile de Municípios não encontrado (`data/shapefiles/BR_Municipios_2024/BR_Municipios_2024.shp`). "
@@ -235,6 +235,16 @@ def _render_subtab_pam_muni() -> None:
         st.warning("Dados PAM por município não encontrados. Verifique `data/raw/pam/DADOS_PAM_POR_MUNICIPIO_5_CULTURAS/`.")
         return
 
+=======
+    if not geojson.get("features"):
+        st.warning(
+            "Shapefile de municípios não encontrado (`data/shapefiles/BR_Municipios_2024/BR_Municipios_2024.shp`). "
+            "Adicione o arquivo `.shp` para habilitar os mapas por município."
+        )
+        return
+
+    pam = load_pam_municipios()
+>>>>>>> 00e020b0004de4ca42fd2a683ac835d4f044f29b
     col1, col2, col3 = st.columns(3)
     with col1:
         crop_opts = sorted(pam["cultura"].unique())
@@ -509,9 +519,17 @@ def _render_subtab_coverage() -> None:
     )
 
     cov = load_coverage_municipios()
+    if cov.empty:
+        st.warning(
+            "Arquivo de cobertura não encontrado (`data/processed/MB_col10_municipios.csv`). "
+            "Adicione o arquivo para habilitar os mapas de cobertura do solo."
+        )
+        return
+
     geojson_str, muni_meta = load_municipios_geo()
     geojson = json.loads(geojson_str)
 
+<<<<<<< HEAD
     if cov.empty:
         st.warning(
             "Dados de cobertura por município não encontrados. "
@@ -526,6 +544,15 @@ def _render_subtab_coverage() -> None:
             "mas os gráficos de tendência abaixo ainda funcionarão."
         )
 
+=======
+    if not geojson.get("features"):
+        st.warning(
+            "Shapefile de municípios não encontrado (`data/shapefiles/BR_Municipios_2024/BR_Municipios_2024.shp`). "
+            "Adicione o arquivo `.shp` para habilitar os mapas por município."
+        )
+        return
+
+>>>>>>> 00e020b0004de4ca42fd2a683ac835d4f044f29b
     col1, col2, col3 = st.columns(3)
     with col1:
         class_opts = [k for k in COVERAGE_DISPLAY if k in cov["class_key"].unique()]
