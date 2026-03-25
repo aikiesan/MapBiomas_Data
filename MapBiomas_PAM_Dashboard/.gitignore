@@ -1,0 +1,14 @@
+# Streamlit runtime output
+streamlit_out.txt
+streamlit_err.txt
+.streamlit/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# OS
+.DS_Store
+Thumbs.db
