@@ -1,0 +1,256 @@
+﻿cod_rgint,nome_rgint,ano,cultura,area_ha
+1101,Porto Velho,2008,algodao_arboreo,0.0
+1101,Porto Velho,2009,algodao_arboreo,0.0
+1101,Porto Velho,2010,algodao_arboreo,0.0
+1101,Porto Velho,2011,algodao_arboreo,0.0
+1101,Porto Velho,2012,algodao_arboreo,0.0
+1101,Porto Velho,2013,algodao_arboreo,0.0
+1101,Porto Velho,2014,algodao_arboreo,0.0
+1101,Porto Velho,2015,algodao_arboreo,0.0
+1101,Porto Velho,2016,algodao_arboreo,0.0
+1101,Porto Velho,2017,algodao_arboreo,0.0
+1101,Porto Velho,2018,algodao_arboreo,0.0
+1101,Porto Velho,2019,algodao_arboreo,0.0
+1101,Porto Velho,2020,algodao_arboreo,0.0
+1101,Porto Velho,2021,algodao_arboreo,0.0
+1101,Porto Velho,2022,algodao_arboreo,0.0
+1101,Porto Velho,2023,algodao_arboreo,0.0
+1101,Porto Velho,2024,algodao_arboreo,0.0
+1101,Porto Velho,2008,algodao_herbaceo,0.0
+1101,Porto Velho,2009,algodao_herbaceo,0.0
+1101,Porto Velho,2010,algodao_herbaceo,0.0
+1101,Porto Velho,2011,algodao_herbaceo,0.0
+1101,Porto Velho,2012,algodao_herbaceo,0.0
+1101,Porto Velho,2013,algodao_herbaceo,0.0
+1101,Porto Velho,2014,algodao_herbaceo,0.0
+1101,Porto Velho,2015,algodao_herbaceo,0.0
+1101,Porto Velho,2016,algodao_herbaceo,0.0
+1101,Porto Velho,2017,algodao_herbaceo,0.0
+1101,Porto Velho,2018,algodao_herbaceo,0.0
+1101,Porto Velho,2019,algodao_herbaceo,0.0
+1101,Porto Velho,2020,algodao_herbaceo,0.0
+1101,Porto Velho,2021,algodao_herbaceo,0.0
+1101,Porto Velho,2022,algodao_herbaceo,0.0
+1101,Porto Velho,2023,algodao_herbaceo,0.0
+1101,Porto Velho,2024,algodao_herbaceo,0.0
+1101,Porto Velho,2008,cana,153.0
+1101,Porto Velho,2009,cana,177.0
+1101,Porto Velho,2010,cana,73.0
+1101,Porto Velho,2011,cana,94.0
+1101,Porto Velho,2012,cana,0.0
+1101,Porto Velho,2013,cana,148.0
+1101,Porto Velho,2014,cana,331.0
+1101,Porto Velho,2015,cana,492.0
+1101,Porto Velho,2016,cana,411.0
+1101,Porto Velho,2017,cana,249.0
+1101,Porto Velho,2018,cana,231.0
+1101,Porto Velho,2019,cana,326.0
+1101,Porto Velho,2020,cana,253.0
+1101,Porto Velho,2021,cana,322.0
+1101,Porto Velho,2022,cana,257.0
+1101,Porto Velho,2023,cana,300.0
+1101,Porto Velho,2024,cana,301.0
+1101,Porto Velho,2008,milho,28640.0
+1101,Porto Velho,2009,milho,30844.0
+1101,Porto Velho,2010,milho,32028.0
+1101,Porto Velho,2011,milho,29569.0
+1101,Porto Velho,2012,milho,18964.0
+1101,Porto Velho,2013,milho,15737.0
+1101,Porto Velho,2014,milho,15361.0
+1101,Porto Velho,2015,milho,20147.0
+1101,Porto Velho,2016,milho,17883.0
+1101,Porto Velho,2017,milho,24149.0
+1101,Porto Velho,2018,milho,22459.0
+1101,Porto Velho,2019,milho,35243.0
+1101,Porto Velho,2020,milho,36879.0
+1101,Porto Velho,2021,milho,45587.0
+1101,Porto Velho,2022,milho,76397.0
+1101,Porto Velho,2023,milho,73695.0
+1101,Porto Velho,2024,milho,106742.0
+1101,Porto Velho,2008,soja,400.0
+1101,Porto Velho,2009,soja,720.0
+1101,Porto Velho,2010,soja,1805.0
+1101,Porto Velho,2011,soja,2055.0
+1101,Porto Velho,2012,soja,4802.0
+1101,Porto Velho,2013,soja,5152.0
+1101,Porto Velho,2014,soja,12616.0
+1101,Porto Velho,2015,soja,25717.0
+1101,Porto Velho,2016,soja,33176.0
+1101,Porto Velho,2017,soja,50501.0
+1101,Porto Velho,2018,soja,64603.0
+1101,Porto Velho,2019,soja,100536.0
+1101,Porto Velho,2020,soja,131216.0
+1101,Porto Velho,2021,soja,110830.0
+1101,Porto Velho,2022,soja,177076.0
+1101,Porto Velho,2023,soja,251518.0
+1101,Porto Velho,2024,soja,254751.0
+2906,Barreiras,2008,algodao_arboreo,0.0
+2906,Barreiras,2009,algodao_arboreo,0.0
+2906,Barreiras,2010,algodao_arboreo,0.0
+2906,Barreiras,2011,algodao_arboreo,0.0
+2906,Barreiras,2012,algodao_arboreo,0.0
+2906,Barreiras,2013,algodao_arboreo,0.0
+2906,Barreiras,2014,algodao_arboreo,0.0
+2906,Barreiras,2015,algodao_arboreo,0.0
+2906,Barreiras,2016,algodao_arboreo,0.0
+2906,Barreiras,2017,algodao_arboreo,0.0
+2906,Barreiras,2018,algodao_arboreo,0.0
+2906,Barreiras,2019,algodao_arboreo,0.0
+2906,Barreiras,2020,algodao_arboreo,0.0
+2906,Barreiras,2021,algodao_arboreo,0.0
+2906,Barreiras,2022,algodao_arboreo,0.0
+2906,Barreiras,2023,algodao_arboreo,0.0
+2906,Barreiras,2024,algodao_arboreo,0.0
+2906,Barreiras,2008,algodao_herbaceo,292562.0
+2906,Barreiras,2009,algodao_herbaceo,262165.0
+2906,Barreiras,2010,algodao_herbaceo,245561.0
+2906,Barreiras,2011,algodao_herbaceo,369745.0
+2906,Barreiras,2012,algodao_herbaceo,382926.0
+2906,Barreiras,2013,algodao_herbaceo,252908.0
+2906,Barreiras,2014,algodao_herbaceo,323194.0
+2906,Barreiras,2015,algodao_herbaceo,318061.0
+2906,Barreiras,2016,algodao_herbaceo,270384.0
+2906,Barreiras,2017,algodao_herbaceo,190180.0
+2906,Barreiras,2018,algodao_herbaceo,259497.0
+2906,Barreiras,2019,algodao_herbaceo,318978.0
+2906,Barreiras,2020,algodao_herbaceo,303537.0
+2906,Barreiras,2021,algodao_herbaceo,266025.0
+2906,Barreiras,2022,algodao_herbaceo,293915.0
+2906,Barreiras,2023,algodao_herbaceo,302339.0
+2906,Barreiras,2024,algodao_herbaceo,327915.0
+2906,Barreiras,2008,cana,12910.0
+2906,Barreiras,2009,cana,8540.0
+2906,Barreiras,2010,cana,8730.0
+2906,Barreiras,2011,cana,8018.0
+2906,Barreiras,2012,cana,10517.0
+2906,Barreiras,2013,cana,15735.0
+2906,Barreiras,2014,cana,14290.0
+2906,Barreiras,2015,cana,12655.0
+2906,Barreiras,2016,cana,13774.0
+2906,Barreiras,2017,cana,4009.0
+2906,Barreiras,2018,cana,3070.0
+2906,Barreiras,2019,cana,2985.0
+2906,Barreiras,2020,cana,2824.0
+2906,Barreiras,2021,cana,2855.0
+2906,Barreiras,2022,cana,2959.0
+2906,Barreiras,2023,cana,3040.0
+2906,Barreiras,2024,cana,2844.0
+2906,Barreiras,2008,milho,226905.0
+2906,Barreiras,2009,milho,239470.0
+2906,Barreiras,2010,milho,222110.0
+2906,Barreiras,2011,milho,206376.0
+2906,Barreiras,2012,milho,255367.0
+2906,Barreiras,2013,milho,241110.0
+2906,Barreiras,2014,milho,332158.0
+2906,Barreiras,2015,milho,273891.0
+2906,Barreiras,2016,milho,195287.0
+2906,Barreiras,2017,milho,259664.0
+2906,Barreiras,2018,milho,260049.0
+2906,Barreiras,2019,milho,249419.0
+2906,Barreiras,2020,milho,204948.0
+2906,Barreiras,2021,milho,211732.0
+2906,Barreiras,2022,milho,221810.0
+2906,Barreiras,2023,milho,215753.0
+2906,Barreiras,2024,milho,177300.0
+2906,Barreiras,2008,soja,903400.0
+2906,Barreiras,2009,soja,948499.0
+2906,Barreiras,2010,soja,1014950.0
+2906,Barreiras,2011,soja,1043200.0
+2906,Barreiras,2012,soja,1110157.0
+2906,Barreiras,2013,soja,1209267.0
+2906,Barreiras,2014,soja,1274369.0
+2906,Barreiras,2015,soja,1437663.0
+2906,Barreiras,2016,soja,1534228.0
+2906,Barreiras,2017,soja,1581856.0
+2906,Barreiras,2018,soja,1601358.0
+2906,Barreiras,2019,soja,1580102.0
+2906,Barreiras,2020,soja,1617150.0
+2906,Barreiras,2021,soja,1693885.0
+2906,Barreiras,2022,soja,1768221.0
+2906,Barreiras,2023,soja,1916042.0
+2906,Barreiras,2024,soja,1960883.0
+5205,Porangatu - Uruaçu,2008,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2009,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2010,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2011,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2012,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2013,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2014,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2015,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2016,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2017,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2018,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2019,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2020,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2021,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2022,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2023,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2024,algodao_arboreo,0.0
+5205,Porangatu - Uruaçu,2008,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2009,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2010,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2011,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2012,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2013,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2014,algodao_herbaceo,300.0
+5205,Porangatu - Uruaçu,2015,algodao_herbaceo,300.0
+5205,Porangatu - Uruaçu,2016,algodao_herbaceo,300.0
+5205,Porangatu - Uruaçu,2017,algodao_herbaceo,220.0
+5205,Porangatu - Uruaçu,2018,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2019,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2020,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2021,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2022,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2023,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2024,algodao_herbaceo,0.0
+5205,Porangatu - Uruaçu,2008,cana,87000.0
+5205,Porangatu - Uruaçu,2009,cana,91809.0
+5205,Porangatu - Uruaçu,2010,cana,88658.0
+5205,Porangatu - Uruaçu,2011,cana,116686.0
+5205,Porangatu - Uruaçu,2012,cana,126247.0
+5205,Porangatu - Uruaçu,2013,cana,121805.0
+5205,Porangatu - Uruaçu,2014,cana,124344.0
+5205,Porangatu - Uruaçu,2015,cana,132749.0
+5205,Porangatu - Uruaçu,2016,cana,128121.0
+5205,Porangatu - Uruaçu,2017,cana,124607.0
+5205,Porangatu - Uruaçu,2018,cana,133821.0
+5205,Porangatu - Uruaçu,2019,cana,140407.0
+5205,Porangatu - Uruaçu,2020,cana,143332.0
+5205,Porangatu - Uruaçu,2021,cana,145675.0
+5205,Porangatu - Uruaçu,2022,cana,146086.0
+5205,Porangatu - Uruaçu,2023,cana,181080.0
+5205,Porangatu - Uruaçu,2024,cana,180568.0
+5205,Porangatu - Uruaçu,2008,milho,43050.0
+5205,Porangatu - Uruaçu,2009,milho,42650.0
+5205,Porangatu - Uruaçu,2010,milho,37700.0
+5205,Porangatu - Uruaçu,2011,milho,39912.0
+5205,Porangatu - Uruaçu,2012,milho,37810.0
+5205,Porangatu - Uruaçu,2013,milho,35564.0
+5205,Porangatu - Uruaçu,2014,milho,33670.0
+5205,Porangatu - Uruaçu,2015,milho,30505.0
+5205,Porangatu - Uruaçu,2016,milho,38103.0
+5205,Porangatu - Uruaçu,2017,milho,25900.0
+5205,Porangatu - Uruaçu,2018,milho,23484.0
+5205,Porangatu - Uruaçu,2019,milho,29559.0
+5205,Porangatu - Uruaçu,2020,milho,29319.0
+5205,Porangatu - Uruaçu,2021,milho,31537.0
+5205,Porangatu - Uruaçu,2022,milho,47480.0
+5205,Porangatu - Uruaçu,2023,milho,45764.0
+5205,Porangatu - Uruaçu,2024,milho,40960.0
+5205,Porangatu - Uruaçu,2008,soja,63850.0
+5205,Porangatu - Uruaçu,2009,soja,65400.0
+5205,Porangatu - Uruaçu,2010,soja,72130.0
+5205,Porangatu - Uruaçu,2011,soja,85356.0
+5205,Porangatu - Uruaçu,2012,soja,107466.0
+5205,Porangatu - Uruaçu,2013,soja,119420.0
+5205,Porangatu - Uruaçu,2014,soja,135894.0
+5205,Porangatu - Uruaçu,2015,soja,151359.0
+5205,Porangatu - Uruaçu,2016,soja,164639.0
+5205,Porangatu - Uruaçu,2017,soja,168520.0
+5205,Porangatu - Uruaçu,2018,soja,173150.0
+5205,Porangatu - Uruaçu,2019,soja,184242.0
+5205,Porangatu - Uruaçu,2020,soja,196527.0
+5205,Porangatu - Uruaçu,2021,soja,220036.0
+5205,Porangatu - Uruaçu,2022,soja,230523.0
+5205,Porangatu - Uruaçu,2023,soja,256171.0
+5205,Porangatu - Uruaçu,2024,soja,278880.0

@@ -1,0 +1,137 @@
+﻿cod_rgint,nome_rgint,ano,cultura,mb_ha,pam_ha,ratio_mb_pam
+1101,Porto Velho,2008,pastagem,3073851.0,,
+1101,Porto Velho,2009,pastagem,3114291.0,,
+1101,Porto Velho,2010,pastagem,3145845.0,,
+1101,Porto Velho,2011,pastagem,3223964.0,,
+1101,Porto Velho,2012,pastagem,3290521.0,,
+1101,Porto Velho,2013,pastagem,3366060.0,,
+1101,Porto Velho,2014,pastagem,3432858.0,,
+1101,Porto Velho,2015,pastagem,3531672.0,,
+1101,Porto Velho,2016,pastagem,3659762.0,,
+1101,Porto Velho,2017,pastagem,3764170.0,,
+1101,Porto Velho,2018,pastagem,3850850.0,,
+1101,Porto Velho,2019,pastagem,3984396.0,,
+1101,Porto Velho,2020,pastagem,4114081.0,,
+1101,Porto Velho,2021,pastagem,4275117.0,,
+1101,Porto Velho,2022,pastagem,4436542.0,,
+1101,Porto Velho,2023,pastagem,4538213.0,,
+1101,Porto Velho,2024,pastagem,4583320.0,,
+1101,Porto Velho,2008,soja,27.0,400.0,0.068
+1101,Porto Velho,2009,soja,13.0,,
+1101,Porto Velho,2010,soja,90.0,1805.0,0.05
+1101,Porto Velho,2011,soja,959.0,2055.0,0.467
+1101,Porto Velho,2012,soja,1202.0,,
+1101,Porto Velho,2013,soja,1558.0,5152.0,0.302
+1101,Porto Velho,2014,soja,3075.0,12616.0,0.244
+1101,Porto Velho,2015,soja,6898.0,,
+1101,Porto Velho,2016,soja,13170.0,33176.0,0.397
+1101,Porto Velho,2017,soja,20645.0,50501.0,0.409
+1101,Porto Velho,2018,soja,26521.0,,
+1101,Porto Velho,2019,soja,38780.0,100536.0,0.386
+1101,Porto Velho,2020,soja,50393.0,131216.0,0.384
+1101,Porto Velho,2021,soja,72128.0,,
+1101,Porto Velho,2022,soja,72898.0,177076.0,0.412
+1101,Porto Velho,2023,soja,73591.0,251518.0,0.293
+1101,Porto Velho,2024,soja,73686.0,,
+2906,Barreiras,2008,cana,0.0,12910.0,0.0
+2906,Barreiras,2009,cana,0.0,,
+2906,Barreiras,2010,cana,0.0,8730.0,0.0
+2906,Barreiras,2011,cana,0.0,8018.0,0.0
+2906,Barreiras,2012,cana,0.0,,
+2906,Barreiras,2013,cana,2.0,15735.0,0.0
+2906,Barreiras,2014,cana,3.0,14290.0,0.0
+2906,Barreiras,2015,cana,3.0,,
+2906,Barreiras,2016,cana,3.0,13774.0,0.0
+2906,Barreiras,2017,cana,3.0,4009.0,0.001
+2906,Barreiras,2018,cana,3.0,,
+2906,Barreiras,2019,cana,3.0,2985.0,0.001
+2906,Barreiras,2020,cana,14.0,2824.0,0.005
+2906,Barreiras,2021,cana,14.0,,
+2906,Barreiras,2022,cana,5.0,2959.0,0.002
+2906,Barreiras,2023,cana,2.0,3040.0,0.001
+2906,Barreiras,2024,cana,2.0,,
+2906,Barreiras,2008,pastagem,959740.0,,
+2906,Barreiras,2009,pastagem,974370.0,,
+2906,Barreiras,2010,pastagem,982731.0,,
+2906,Barreiras,2011,pastagem,985542.0,,
+2906,Barreiras,2012,pastagem,1005167.0,,
+2906,Barreiras,2013,pastagem,1059107.0,,
+2906,Barreiras,2014,pastagem,1112681.0,,
+2906,Barreiras,2015,pastagem,1154047.0,,
+2906,Barreiras,2016,pastagem,1174017.0,,
+2906,Barreiras,2017,pastagem,1175580.0,,
+2906,Barreiras,2018,pastagem,1179296.0,,
+2906,Barreiras,2019,pastagem,1182365.0,,
+2906,Barreiras,2020,pastagem,1176514.0,,
+2906,Barreiras,2021,pastagem,1179882.0,,
+2906,Barreiras,2022,pastagem,1191700.0,,
+2906,Barreiras,2023,pastagem,1191805.0,,
+2906,Barreiras,2024,pastagem,1194362.0,,
+2906,Barreiras,2008,soja,728787.0,903400.0,0.807
+2906,Barreiras,2009,soja,732932.0,,
+2906,Barreiras,2010,soja,881775.0,1014950.0,0.869
+2906,Barreiras,2011,soja,984279.0,1043200.0,0.944
+2906,Barreiras,2012,soja,935375.0,,
+2906,Barreiras,2013,soja,927886.0,1209267.0,0.767
+2906,Barreiras,2014,soja,1036441.0,1274369.0,0.813
+2906,Barreiras,2015,soja,1131456.0,,
+2906,Barreiras,2016,soja,1373104.0,1534228.0,0.895
+2906,Barreiras,2017,soja,1522632.0,1581856.0,0.963
+2906,Barreiras,2018,soja,1469056.0,,
+2906,Barreiras,2019,soja,1479874.0,1580102.0,0.937
+2906,Barreiras,2020,soja,1526331.0,1617150.0,0.944
+2906,Barreiras,2021,soja,1485259.0,,
+2906,Barreiras,2022,soja,1668067.0,1768221.0,0.943
+2906,Barreiras,2023,soja,1696829.0,1916042.0,0.886
+2906,Barreiras,2024,soja,1804348.0,,
+5205,Porangatu - Uruaçu,2008,cana,69896.0,87000.0,0.803
+5205,Porangatu - Uruaçu,2009,cana,77526.0,,
+5205,Porangatu - Uruaçu,2010,cana,83150.0,88658.0,0.938
+5205,Porangatu - Uruaçu,2011,cana,86004.0,116686.0,0.737
+5205,Porangatu - Uruaçu,2012,cana,91872.0,,
+5205,Porangatu - Uruaçu,2013,cana,103703.0,121805.0,0.851
+5205,Porangatu - Uruaçu,2014,cana,115864.0,124344.0,0.932
+5205,Porangatu - Uruaçu,2015,cana,126532.0,,
+5205,Porangatu - Uruaçu,2016,cana,131373.0,128121.0,1.025
+5205,Porangatu - Uruaçu,2017,cana,138980.0,124607.0,1.115
+5205,Porangatu - Uruaçu,2018,cana,136812.0,,
+5205,Porangatu - Uruaçu,2019,cana,139387.0,140407.0,0.993
+5205,Porangatu - Uruaçu,2020,cana,143655.0,143332.0,1.002
+5205,Porangatu - Uruaçu,2021,cana,140007.0,,
+5205,Porangatu - Uruaçu,2022,cana,139068.0,146086.0,0.952
+5205,Porangatu - Uruaçu,2023,cana,131356.0,181080.0,0.725
+5205,Porangatu - Uruaçu,2024,cana,130162.0,,
+5205,Porangatu - Uruaçu,2008,pastagem,2740723.0,,
+5205,Porangatu - Uruaçu,2009,pastagem,2733851.0,,
+5205,Porangatu - Uruaçu,2010,pastagem,2752213.0,,
+5205,Porangatu - Uruaçu,2011,pastagem,2770522.0,,
+5205,Porangatu - Uruaçu,2012,pastagem,2804903.0,,
+5205,Porangatu - Uruaçu,2013,pastagem,2842356.0,,
+5205,Porangatu - Uruaçu,2014,pastagem,2860124.0,,
+5205,Porangatu - Uruaçu,2015,pastagem,2854121.0,,
+5205,Porangatu - Uruaçu,2016,pastagem,2854065.0,,
+5205,Porangatu - Uruaçu,2017,pastagem,2837170.0,,
+5205,Porangatu - Uruaçu,2018,pastagem,2814101.0,,
+5205,Porangatu - Uruaçu,2019,pastagem,2798664.0,,
+5205,Porangatu - Uruaçu,2020,pastagem,2791677.0,,
+5205,Porangatu - Uruaçu,2021,pastagem,2799082.0,,
+5205,Porangatu - Uruaçu,2022,pastagem,2797554.0,,
+5205,Porangatu - Uruaçu,2023,pastagem,2793000.0,,
+5205,Porangatu - Uruaçu,2024,pastagem,2777659.0,,
+5205,Porangatu - Uruaçu,2008,soja,65795.0,63850.0,1.03
+5205,Porangatu - Uruaçu,2009,soja,66512.0,,
+5205,Porangatu - Uruaçu,2010,soja,79029.0,72130.0,1.096
+5205,Porangatu - Uruaçu,2011,soja,89183.0,85356.0,1.045
+5205,Porangatu - Uruaçu,2012,soja,101728.0,,
+5205,Porangatu - Uruaçu,2013,soja,90047.0,119420.0,0.754
+5205,Porangatu - Uruaçu,2014,soja,109532.0,135894.0,0.806
+5205,Porangatu - Uruaçu,2015,soja,160356.0,,
+5205,Porangatu - Uruaçu,2016,soja,178589.0,164639.0,1.085
+5205,Porangatu - Uruaçu,2017,soja,202968.0,168520.0,1.204
+5205,Porangatu - Uruaçu,2018,soja,230831.0,,
+5205,Porangatu - Uruaçu,2019,soja,232599.0,184242.0,1.262
+5205,Porangatu - Uruaçu,2020,soja,213668.0,196527.0,1.087
+5205,Porangatu - Uruaçu,2021,soja,215374.0,,
+5205,Porangatu - Uruaçu,2022,soja,228239.0,230523.0,0.99
+5205,Porangatu - Uruaçu,2023,soja,229119.0,256171.0,0.894
+5205,Porangatu - Uruaçu,2024,soja,234857.0,,

@@ -1,0 +1,171 @@
+﻿cod_rgint,nome_rgint,biome,ano,classe,area_ha_mb,area_ha_pam,ratio_mb_pam
+1101,Porto Velho,Amazônia,2008,pastagem,3073851.0,,
+1101,Porto Velho,Amazônia,2008,soja,27.0,400.0,0.068
+1101,Porto Velho,Amazônia,2009,pastagem,3114291.0,,
+1101,Porto Velho,Amazônia,2009,soja,13.0,720.0,0.018
+1101,Porto Velho,Amazônia,2010,pastagem,3145845.0,,
+1101,Porto Velho,Amazônia,2010,soja,90.0,1805.0,0.05
+1101,Porto Velho,Amazônia,2011,pastagem,3223964.0,,
+1101,Porto Velho,Amazônia,2011,soja,959.0,2055.0,0.467
+1101,Porto Velho,Amazônia,2012,pastagem,3290521.0,,
+1101,Porto Velho,Amazônia,2012,soja,1202.0,4802.0,0.25
+1101,Porto Velho,Amazônia,2013,pastagem,3366060.0,,
+1101,Porto Velho,Amazônia,2013,soja,1558.0,5152.0,0.302
+1101,Porto Velho,Amazônia,2014,pastagem,3432858.0,,
+1101,Porto Velho,Amazônia,2014,soja,3075.0,12616.0,0.244
+1101,Porto Velho,Amazônia,2015,pastagem,3531672.0,,
+1101,Porto Velho,Amazônia,2015,soja,6898.0,25717.0,0.268
+1101,Porto Velho,Amazônia,2016,pastagem,3659762.0,,
+1101,Porto Velho,Amazônia,2016,soja,13170.0,33176.0,0.397
+1101,Porto Velho,Amazônia,2017,pastagem,3764170.0,,
+1101,Porto Velho,Amazônia,2017,soja,20645.0,50501.0,0.409
+1101,Porto Velho,Amazônia,2018,pastagem,3850850.0,,
+1101,Porto Velho,Amazônia,2018,soja,26521.0,64603.0,0.411
+1101,Porto Velho,Amazônia,2019,pastagem,3984396.0,,
+1101,Porto Velho,Amazônia,2019,soja,38780.0,100536.0,0.386
+1101,Porto Velho,Amazônia,2020,pastagem,4114081.0,,
+1101,Porto Velho,Amazônia,2020,soja,50393.0,131216.0,0.384
+1101,Porto Velho,Amazônia,2021,pastagem,4275117.0,,
+1101,Porto Velho,Amazônia,2021,soja,72128.0,110830.0,0.651
+1101,Porto Velho,Amazônia,2022,pastagem,4436542.0,,
+1101,Porto Velho,Amazônia,2022,soja,72898.0,177076.0,0.412
+1101,Porto Velho,Amazônia,2023,pastagem,4538213.0,,
+1101,Porto Velho,Amazônia,2023,soja,73591.0,251518.0,0.293
+1101,Porto Velho,Amazônia,2024,pastagem,4583320.0,,
+1101,Porto Velho,Amazônia,2024,soja,73686.0,254751.0,0.289
+2906,Barreiras,Caatinga,2008,cana,0.0,12000.0,0.0
+2906,Barreiras,Caatinga,2008,pastagem,618322.0,,
+2906,Barreiras,Caatinga,2008,soja,59.0,352900.0,0.0
+2906,Barreiras,Caatinga,2009,cana,0.0,7572.0,0.0
+2906,Barreiras,Caatinga,2009,pastagem,628255.0,,
+2906,Barreiras,Caatinga,2009,soja,32.0,334263.0,0.0
+2906,Barreiras,Caatinga,2010,cana,0.0,7715.0,0.0
+2906,Barreiras,Caatinga,2010,pastagem,633522.0,,
+2906,Barreiras,Caatinga,2010,soja,381.0,344714.0,0.001
+2906,Barreiras,Caatinga,2011,cana,0.0,7138.0,0.0
+2906,Barreiras,Caatinga,2011,pastagem,638635.0,,
+2906,Barreiras,Caatinga,2011,soja,463.0,366327.0,0.001
+2906,Barreiras,Caatinga,2012,cana,0.0,9655.0,0.0
+2906,Barreiras,Caatinga,2012,pastagem,651858.0,,
+2906,Barreiras,Caatinga,2012,soja,447.0,379902.0,0.001
+2906,Barreiras,Caatinga,2013,cana,2.0,14995.0,0.0
+2906,Barreiras,Caatinga,2013,pastagem,673573.0,,
+2906,Barreiras,Caatinga,2013,soja,784.0,424059.0,0.002
+2906,Barreiras,Caatinga,2014,cana,3.0,13465.0,0.0
+2906,Barreiras,Caatinga,2014,pastagem,687889.0,,
+2906,Barreiras,Caatinga,2014,soja,1031.0,438123.0,0.002
+2906,Barreiras,Caatinga,2015,cana,3.0,11780.0,0.0
+2906,Barreiras,Caatinga,2015,pastagem,698749.0,,
+2906,Barreiras,Caatinga,2015,soja,832.0,580463.0,0.001
+2906,Barreiras,Caatinga,2016,cana,3.0,12874.0,0.0
+2906,Barreiras,Caatinga,2016,pastagem,699565.0,,
+2906,Barreiras,Caatinga,2016,soja,773.0,605528.0,0.001
+2906,Barreiras,Caatinga,2017,cana,3.0,3752.0,0.001
+2906,Barreiras,Caatinga,2017,pastagem,696816.0,,
+2906,Barreiras,Caatinga,2017,soja,1511.0,591597.0,0.003
+2906,Barreiras,Caatinga,2018,cana,3.0,2790.0,0.001
+2906,Barreiras,Caatinga,2018,pastagem,689800.0,,
+2906,Barreiras,Caatinga,2018,soja,1659.0,604058.0,0.003
+2906,Barreiras,Caatinga,2019,cana,3.0,2705.0,0.001
+2906,Barreiras,Caatinga,2019,pastagem,688023.0,,
+2906,Barreiras,Caatinga,2019,soja,1193.0,601414.0,0.002
+2906,Barreiras,Caatinga,2020,cana,14.0,2574.0,0.005
+2906,Barreiras,Caatinga,2020,pastagem,686213.0,,
+2906,Barreiras,Caatinga,2020,soja,1217.0,629100.0,0.002
+2906,Barreiras,Caatinga,2021,cana,14.0,2605.0,0.005
+2906,Barreiras,Caatinga,2021,pastagem,691401.0,,
+2906,Barreiras,Caatinga,2021,soja,1175.0,656785.0,0.002
+2906,Barreiras,Caatinga,2022,cana,5.0,2673.0,0.002
+2906,Barreiras,Caatinga,2022,pastagem,699838.0,,
+2906,Barreiras,Caatinga,2022,soja,1728.0,666181.0,0.003
+2906,Barreiras,Caatinga,2023,cana,2.0,2745.0,0.001
+2906,Barreiras,Caatinga,2023,pastagem,699245.0,,
+2906,Barreiras,Caatinga,2023,soja,1896.0,719502.0,0.003
+2906,Barreiras,Caatinga,2024,cana,2.0,2594.0,0.001
+2906,Barreiras,Caatinga,2024,pastagem,688885.0,,
+2906,Barreiras,Caatinga,2024,soja,1972.0,700018.0,0.003
+2906,Barreiras,Cerrado,2008,pastagem,341417.0,,
+2906,Barreiras,Cerrado,2008,soja,728728.0,903000.0,0.807
+2906,Barreiras,Cerrado,2009,pastagem,346115.0,,
+2906,Barreiras,Cerrado,2009,soja,732900.0,948499.0,0.773
+2906,Barreiras,Cerrado,2010,pastagem,349208.0,,
+2906,Barreiras,Cerrado,2010,soja,881394.0,1014950.0,0.868
+2906,Barreiras,Cerrado,2011,pastagem,346908.0,,
+2906,Barreiras,Cerrado,2011,soja,983816.0,1043200.0,0.943
+2906,Barreiras,Cerrado,2012,pastagem,353309.0,,
+2906,Barreiras,Cerrado,2012,soja,934928.0,1110157.0,0.842
+2906,Barreiras,Cerrado,2013,pastagem,385534.0,,
+2906,Barreiras,Cerrado,2013,soja,927102.0,1209267.0,0.767
+2906,Barreiras,Cerrado,2014,pastagem,424792.0,,
+2906,Barreiras,Cerrado,2014,soja,1035410.0,1274324.0,0.813
+2906,Barreiras,Cerrado,2015,pastagem,455298.0,,
+2906,Barreiras,Cerrado,2015,soja,1130625.0,1437663.0,0.786
+2906,Barreiras,Cerrado,2016,pastagem,474451.0,,
+2906,Barreiras,Cerrado,2016,soja,1372332.0,1534118.0,0.895
+2906,Barreiras,Cerrado,2017,pastagem,478764.0,,
+2906,Barreiras,Cerrado,2017,soja,1521121.0,1581856.0,0.962
+2906,Barreiras,Cerrado,2018,pastagem,489496.0,,
+2906,Barreiras,Cerrado,2018,soja,1467397.0,1601358.0,0.916
+2906,Barreiras,Cerrado,2019,pastagem,494343.0,,
+2906,Barreiras,Cerrado,2019,soja,1478681.0,1580102.0,0.936
+2906,Barreiras,Cerrado,2020,pastagem,490302.0,,
+2906,Barreiras,Cerrado,2020,soja,1525114.0,1617150.0,0.943
+2906,Barreiras,Cerrado,2021,pastagem,488481.0,,
+2906,Barreiras,Cerrado,2021,soja,1484084.0,1693885.0,0.876
+2906,Barreiras,Cerrado,2022,pastagem,491862.0,,
+2906,Barreiras,Cerrado,2022,soja,1666339.0,1768221.0,0.942
+2906,Barreiras,Cerrado,2023,pastagem,492559.0,,
+2906,Barreiras,Cerrado,2023,soja,1694933.0,1916042.0,0.885
+2906,Barreiras,Cerrado,2024,pastagem,505477.0,,
+2906,Barreiras,Cerrado,2024,soja,1802376.0,1960883.0,0.919
+5205,Porangatu - Uruaçu,Cerrado,2008,cana,69896.0,87000.0,0.803
+5205,Porangatu - Uruaçu,Cerrado,2008,pastagem,2740723.0,,
+5205,Porangatu - Uruaçu,Cerrado,2008,soja,65795.0,63850.0,1.03
+5205,Porangatu - Uruaçu,Cerrado,2009,cana,77526.0,91809.0,0.844
+5205,Porangatu - Uruaçu,Cerrado,2009,pastagem,2733851.0,,
+5205,Porangatu - Uruaçu,Cerrado,2009,soja,66512.0,65400.0,1.017
+5205,Porangatu - Uruaçu,Cerrado,2010,cana,83150.0,88658.0,0.938
+5205,Porangatu - Uruaçu,Cerrado,2010,pastagem,2752213.0,,
+5205,Porangatu - Uruaçu,Cerrado,2010,soja,79029.0,72130.0,1.096
+5205,Porangatu - Uruaçu,Cerrado,2011,cana,86004.0,116686.0,0.737
+5205,Porangatu - Uruaçu,Cerrado,2011,pastagem,2770522.0,,
+5205,Porangatu - Uruaçu,Cerrado,2011,soja,89183.0,85356.0,1.045
+5205,Porangatu - Uruaçu,Cerrado,2012,cana,91872.0,126247.0,0.728
+5205,Porangatu - Uruaçu,Cerrado,2012,pastagem,2804903.0,,
+5205,Porangatu - Uruaçu,Cerrado,2012,soja,101728.0,107466.0,0.947
+5205,Porangatu - Uruaçu,Cerrado,2013,cana,103703.0,121805.0,0.851
+5205,Porangatu - Uruaçu,Cerrado,2013,pastagem,2842356.0,,
+5205,Porangatu - Uruaçu,Cerrado,2013,soja,90047.0,119420.0,0.754
+5205,Porangatu - Uruaçu,Cerrado,2014,cana,115864.0,124344.0,0.932
+5205,Porangatu - Uruaçu,Cerrado,2014,pastagem,2860124.0,,
+5205,Porangatu - Uruaçu,Cerrado,2014,soja,109532.0,135894.0,0.806
+5205,Porangatu - Uruaçu,Cerrado,2015,cana,126532.0,132749.0,0.953
+5205,Porangatu - Uruaçu,Cerrado,2015,pastagem,2854121.0,,
+5205,Porangatu - Uruaçu,Cerrado,2015,soja,160356.0,151359.0,1.059
+5205,Porangatu - Uruaçu,Cerrado,2016,cana,131373.0,128121.0,1.025
+5205,Porangatu - Uruaçu,Cerrado,2016,pastagem,2854065.0,,
+5205,Porangatu - Uruaçu,Cerrado,2016,soja,178589.0,164639.0,1.085
+5205,Porangatu - Uruaçu,Cerrado,2017,cana,138980.0,124607.0,1.115
+5205,Porangatu - Uruaçu,Cerrado,2017,pastagem,2837170.0,,
+5205,Porangatu - Uruaçu,Cerrado,2017,soja,202968.0,168520.0,1.204
+5205,Porangatu - Uruaçu,Cerrado,2018,cana,136812.0,133821.0,1.022
+5205,Porangatu - Uruaçu,Cerrado,2018,pastagem,2814101.0,,
+5205,Porangatu - Uruaçu,Cerrado,2018,soja,230831.0,173150.0,1.333
+5205,Porangatu - Uruaçu,Cerrado,2019,cana,139387.0,140407.0,0.993
+5205,Porangatu - Uruaçu,Cerrado,2019,pastagem,2798664.0,,
+5205,Porangatu - Uruaçu,Cerrado,2019,soja,232599.0,184242.0,1.262
+5205,Porangatu - Uruaçu,Cerrado,2020,cana,143655.0,143332.0,1.002
+5205,Porangatu - Uruaçu,Cerrado,2020,pastagem,2791677.0,,
+5205,Porangatu - Uruaçu,Cerrado,2020,soja,213668.0,196527.0,1.087
+5205,Porangatu - Uruaçu,Cerrado,2021,cana,140007.0,145675.0,0.961
+5205,Porangatu - Uruaçu,Cerrado,2021,pastagem,2799082.0,,
+5205,Porangatu - Uruaçu,Cerrado,2021,soja,215374.0,220036.0,0.979
+5205,Porangatu - Uruaçu,Cerrado,2022,cana,139068.0,146086.0,0.952
+5205,Porangatu - Uruaçu,Cerrado,2022,pastagem,2797554.0,,
+5205,Porangatu - Uruaçu,Cerrado,2022,soja,228239.0,230523.0,0.99
+5205,Porangatu - Uruaçu,Cerrado,2023,cana,131356.0,181080.0,0.725
+5205,Porangatu - Uruaçu,Cerrado,2023,pastagem,2793000.0,,
+5205,Porangatu - Uruaçu,Cerrado,2023,soja,229119.0,256171.0,0.894
+5205,Porangatu - Uruaçu,Cerrado,2024,cana,130162.0,180568.0,0.721
+5205,Porangatu - Uruaçu,Cerrado,2024,pastagem,2777659.0,,
+5205,Porangatu - Uruaçu,Cerrado,2024,soja,234857.0,278880.0,0.842

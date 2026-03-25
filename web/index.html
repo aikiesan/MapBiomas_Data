@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MapBiomas Land Transition Explorer — Brazil (2008–2024)</title>
+<script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+    --accent: #4f8ef7; --accent2: #f7874f; --text: #e8eaf6;
+    --muted: #8892b0; --border: #2e3350; --green: #43c59e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Arial, sans-serif; }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #1a1d27 0%, #0d1b3e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 40px 20px;
+    display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  header h1 { font-size: 1.55rem; font-weight: 700; color: #fff; }
+  header p  { font-size: 0.82rem; color: var(--muted); margin-top: 4px; max-width: 700px; }
+  .badge { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px;
+           padding: 4px 12px; font-size: 0.75rem; color: var(--accent); white-space: nowrap; }
+
+  /* KPI STRIP */
+  .kpi-strip {
+    display: flex; gap: 16px; padding: 20px 40px; flex-wrap: wrap;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  .kpi { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+         padding: 14px 22px; min-width: 160px; flex: 1; }
+  .kpi .val { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+  .kpi .lbl { font-size: 0.73rem; color: var(--muted); margin-top: 2px; }
+
+  /* CONTROLS */
+  .controls {
+    display: flex; gap: 16px; padding: 18px 40px; flex-wrap: wrap;
+    background: var(--bg); border-bottom: 1px solid var(--border); align-items: flex-end;
+  }
+  .ctrl-group { display: flex; flex-direction: column; gap: 5px; }
+  .ctrl-group label { font-size: 0.73rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  select, input[type=range] {
+    background: var(--surface2); color: var(--text); border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px 10px; font-size: 0.85rem; cursor: pointer;
+  }
+  select:focus { outline: 1px solid var(--accent); }
+  input[type=range] { width: 180px; accent-color: var(--accent); padding: 4px 0; }
+  .range-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--muted); }
+
+  /* MAIN GRID */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    padding: 24px 40px;
+  }
+  @media(max-width:900px){ .main-grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .card.wide { grid-column: 1 / -1; }
+  .card h2 { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+  .card .sub { font-size: 0.73rem; color: var(--muted); }
+  .chart-area { width: 100%; min-height: 340px; }
+
+  /* TABLE */
+  .tbl-wrap { overflow-x: auto; max-height: 340px; overflow-y: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  th { background: var(--surface2); color: var(--muted); text-align: left;
+       padding: 8px 10px; position: sticky; top: 0; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: var(--surface2); }
+  .bar-cell { display: flex; align-items: center; gap: 8px; }
+  .mini-bar { height: 8px; background: var(--accent); border-radius: 4px; min-width: 2px; }
+
+  /* STATUS */
+  #status {
+    text-align: center; padding: 60px 20px; color: var(--muted); font-size: 0.9rem;
+    grid-column: 1 / -1;
+  }
+  .spinner { display: inline-block; width: 28px; height: 28px;
+             border: 3px solid var(--border); border-top-color: var(--accent);
+             border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: middle; margin-right: 10px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  footer { text-align: center; padding: 24px; color: var(--muted); font-size: 0.72rem; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🌿 MapBiomas Land Transition Explorer</h1>
+    <p>Pixel-by-pixel rasterized transition analysis for Brazil (2008–2024) · 133 intermediate geographic regions · 17 transition types · 30m resolution</p>
+  </div>
+  <span class="badge">ABIOVE · FAPESP 2025/08745-2</span>
+</header>
+
+<div class="kpi-strip" id="kpiStrip">
+  <div class="kpi"><div class="val" id="k1">—</div><div class="lbl">Total Records</div></div>
+  <div class="kpi"><div class="val" id="k2">—</div><div class="lbl">Regions Covered</div></div>
+  <div class="kpi"><div class="val" id="k3">—</div><div class="lbl">Total Area Analysed (km²)</div></div>
+  <div class="kpi"><div class="val" id="k4">—</div><div class="lbl">Peak Deforestation Year</div></div>
+  <div class="kpi"><div class="val" id="k5">—</div><div class="lbl">Floresta→Past Peak (km²)</div></div>
+</div>
+
+<div class="controls">
+  <div class="ctrl-group">
+    <label>Transition Type</label>
+    <select id="selTransition"></select>
+  </div>
+  <div class="ctrl-group">
+    <label>State (UF)</label>
+    <select id="selUF"><option value="ALL">All States</option></select>
+  </div>
+  <div class="ctrl-group">
+    <label>Year Range · <span id="yearLabel">2008 – 2024</span></label>
+    <input type="range" id="rangeYear" min="0" max="15" value="15"/>
+    <div class="range-labels"><span>2008</span><span>2024</span></div>
+  </div>
+  <div class="ctrl-group">
+    <label>Top N Regions (bar chart)</label>
+    <select id="selTopN">
+      <option value="10">Top 10</option>
+      <option value="20" selected>Top 20</option>
+      <option value="30">Top 30</option>
+      <option value="999">All</option>
+    </select>
+  </div>
+</div>
+
+<div class="main-grid" id="mainGrid">
+  <div id="status"><span class="spinner"></span>Load your CSV file to begin…<br><br>
+    <label style="cursor:pointer; color: var(--accent); font-size:0.9rem;">
+      📂 Open CSV File
+      <input type="file" id="fileInput" accept=".csv" style="display:none"/>
+    </label>
+    <br><small style="margin-top:8px;display:block">transicoes_regioes_int.csv</small>
+  </div>
+</div>
+
+<footer>
+  Lucas Nakamura Cerejo · NIPE/UNICAMP · CP2B · Data: MapBiomas Collection 9 · IBGE Intermediate Regions 2017
+</footer>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+let ALL_DATA = [];
+let filtered = [];
+
+const LABEL = {
+  floresta_para_pastagem:    'Floresta → Pastagem',
+  pastagem_para_soja:        'Pastagem → Soja',
+  floresta_para_soja:        'Floresta → Soja',
+  savana_para_pastagem:      'Savana → Pastagem',
+  savana_para_soja:          'Savana → Soja',
+  floresta_para_outras_temp: 'Floresta → Outras Temp.',
+  floresta_para_veg_sec:     'Floresta → Veg. Sec.',
+  floresta_para_cana:        'Floresta → Cana',
+  savana_para_outras_temp:   'Savana → Outras Temp.',
+  pastagem_para_outras_temp: 'Pastagem → Outras Temp.',
+  pastagem_para_cana:        'Pastagem → Cana',
+  pastagem_para_veg_sec:     'Pastagem → Veg. Sec.',
+  soja_para_veg_sec:         'Soja → Veg. Sec.',
+  floresta_estavel:          'Floresta Estável',
+  pastagem_estavel:          'Pastagem Estável',
+  soja_estavel:              'Soja Estável',
+  savana_estavel:            'Savana Estável',
+};
+
+const IBGE_UF = {
+  11:'RO',12:'AC',13:'AM',14:'RR',15:'PA',16:'AP',17:'TO',
+  21:'MA',22:'PI',23:'CE',24:'RN',25:'PB',26:'PE',27:'AL',
+  28:'SE',29:'BA',31:'MG',32:'ES',33:'RJ',35:'SP',
+  41:'PR',42:'SC',43:'RS',50:'MS',51:'MT',52:'GO',53:'DF'
+};
+
+// ─── FILE LOAD ────────────────────────────────────────────────────────────────
+document.getElementById('fileInput').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  document.getElementById('status').innerHTML = '<span class="spinner"></span>Parsing CSV…';
+  Papa.parse(file, {
+    header: true, skipEmptyLines: true, dynamicTyping: true,
+    complete: res => { initDashboard(res.data); }
+  });
+});
+
+function initDashboard(data) {
+  ALL_DATA = data;
+
+  // Inject UF from zona_id prefix (first 2 digits)
+  ALL_DATA.forEach(r => {
+    const code = Math.floor(r.zona_id / 100);
+    r.UF = IBGE_UF[code] || '??';
+  });
+
+  // Populate controls
+  const transitions = [...new Set(ALL_DATA.map(r => r.transicao))].sort();
+  const sel = document.getElementById('selTransition');
+  sel.innerHTML = transitions.map(t =>
+    `<option value="${t}"${t==='floresta_para_pastagem'?' selected':''}>${LABEL[t]||t}</option>`
+  ).join('');
+
+  const ufs = [...new Set(ALL_DATA.map(r => r.UF))].sort();
+  const selUF = document.getElementById('selUF');
+  selUF.innerHTML = '<option value="ALL">All States</option>' +
+    ufs.map(u => `<option value="${u}">${u}</option>`).join('');
+
+  // Remove status, build grid
+  document.getElementById('mainGrid').innerHTML = `
+    <div class="card wide">
+      <h2>📈 Annual Trend — National Total</h2>
+      <span class="sub" id="trendSub"></span>
+      <div class="chart-area" id="chartTrend"></div>
+    </div>
+    <div class="card">
+      <h2>🗺️ Top Regions</h2>
+      <span class="sub" id="barSub"></span>
+      <div class="chart-area" id="chartBar"></div>
+    </div>
+    <div class="card">
+      <h2>🔥 Heatmap — Region × Year</h2>
+      <span class="sub" id="heatSub"></span>
+      <div class="chart-area" id="chartHeat"></div>
+    </div>
+    <div class="card wide">
+      <h2>🏛️ By State (UF) — Selected Transition</h2>
+      <span class="sub" id="ufSub"></span>
+      <div class="chart-area" id="chartUF"></div>
+    </div>
+    <div class="card wide">
+      <h2>📊 Data Table</h2>
+      <div class="tbl-wrap"><table id="dataTable"><thead></thead><tbody></tbody></table></div>
+    </div>
+  `;
+
+  // Wire controls
+  ['selTransition','selUF','selTopN'].forEach(id =>
+    document.getElementById(id).addEventListener('change', render));
+  document.getElementById('rangeYear').addEventListener('input', e => {
+    const yr = 2008 + parseInt(e.target.value);
+    document.getElementById('yearLabel').textContent = `2008 – ${yr}`;
+    render();
+  });
+
+  render();
+}
+
+// ─── KPIs ────────────────────────────────────────────────────────────────────
+function updateKPIs() {
+  const fmt = n => n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(0)+'k' : n;
+  document.getElementById('k1').textContent = fmt(ALL_DATA.length);
+  document.getElementById('k2').textContent = new Set(ALL_DATA.map(r=>r.zona_id)).size;
+  const totalArea = ALL_DATA.reduce((s,r)=>s+r.area_km2,0);
+  document.getElementById('k3').textContent = fmt(Math.round(totalArea));
+
+  // Peak year for floresta→pastagem
+  const fp = ALL_DATA.filter(r=>r.transicao==='floresta_para_pastagem');
+  const byYear = {};
+  fp.forEach(r=>{ byYear[r.par_anos]=(byYear[r.par_anos]||0)+r.area_km2; });
+  const peak = Object.entries(byYear).sort((a,b)=>b[1]-a[1])[0];
+  if (peak) {
+    document.getElementById('k4').textContent = peak[0].replace('_','–');
+    document.getElementById('k5').textContent = fmt(Math.round(peak[1]));
+  }
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+const PLOTLY_LAYOUT = {
+  paper_bgcolor:'#1a1d27', plot_bgcolor:'#1a1d27',
+  font:{color:'#e8eaf6', family:'Segoe UI, Arial'},
+  margin:{t:30,r:20,b:60,l:60},
+  xaxis:{gridcolor:'#2e3350', linecolor:'#2e3350'},
+  yaxis:{gridcolor:'#2e3350', linecolor:'#2e3350'},
+};
+const COLORS = ['#4f8ef7','#f7874f','#43c59e','#f7c948','#c084fc','#f87171','#34d399','#60a5fa'];
+
+function render() {
+  if (!ALL_DATA.length) return;
+  updateKPIs();
+
+  const trans  = document.getElementById('selTransition').value;
+  const uf     = document.getElementById('selUF').value;
+  const topN   = parseInt(document.getElementById('selTopN').value);
+  const maxYr  = 2008 + parseInt(document.getElementById('rangeYear').value);
+  const label  = LABEL[trans] || trans;
+
+  filtered = ALL_DATA.filter(r =>
+    r.transicao === trans &&
+    r.ano_inicio <= maxYr &&
+    (uf === 'ALL' || r.UF === uf)
+  );
+
+  // ── TREND ──────────────────────────────────────────────────────────────────
+  const trendMap = {};
+  filtered.forEach(r => {
+    trendMap[r.par_anos] = (trendMap[r.par_anos]||0) + r.area_km2;
+  });
+  const trendPairs = Object.keys(trendMap).sort();
+  const trendVals  = trendPairs.map(p => Math.round(trendMap[p]));
+
+  Plotly.newPlot('chartTrend', [{
+    x: trendPairs, y: trendVals, type: 'scatter', mode: 'lines+markers',
+    fill: 'tozeroy', fillcolor: 'rgba(79,142,247,0.12)',
+    line: {color:'#4f8ef7', width:2.5},
+    marker: {color:'#4f8ef7', size:6},
+    hovertemplate: '<b>%{x}</b><br>%{y:,.0f} km²<extra></extra>'
+  }], {
+    ...PLOTLY_LAYOUT,
+    xaxis: {...PLOTLY_LAYOUT.xaxis, tickangle:45},
+    yaxis: {...PLOTLY_LAYOUT.yaxis, tickformat:',.0f', title:{text:'km²', font:{size:12}}}
+  }, {responsive:true, displayModeBar:false});
+  document.getElementById('trendSub').textContent = `${label} · ${uf==='ALL'?'All Brazil':uf} · 2008–${maxYr}`;
+
+  // ── TOP REGIONS BAR ────────────────────────────────────────────────────────
+  const regionMap = {};
+  filtered.forEach(r => { regionMap[r.zona_nome] = (regionMap[r.zona_nome]||0) + r.area_km2; });
+  let regions = Object.entries(regionMap).sort((a,b)=>b[1]-a[1]);
+  if (topN < 999) regions = regions.slice(0, topN);
+  regions.reverse();
+
+  Plotly.newPlot('chartBar', [{
+    x: regions.map(r=>Math.round(r[1])),
+    y: regions.map(r=>r[0]),
+    type: 'bar', orientation: 'h',
+    marker: {color:'#4f8ef7', opacity:0.85},
+    hovertemplate: '<b>%{y}</b><br>%{x:,.0f} km²<extra></extra>'
+  }], {
+    ...PLOTLY_LAYOUT,
+    margin:{...PLOTLY_LAYOUT.margin, l:160, b:50},
+    xaxis: {...PLOTLY_LAYOUT.xaxis, title:{text:'km²', font:{size:12}}, tickformat:',.0f'},
+    yaxis: {...PLOTLY_LAYOUT.yaxis, tickfont:{size:10}}
+  }, {responsive:true, displayModeBar:false});
+  document.getElementById('barSub').textContent = `Top ${Math.min(topN, regions.length)} regions · cumulative ${label}`;
+
+  // ── HEATMAP ────────────────────────────────────────────────────────────────
+  const topRegions = Object.entries(regionMap).sort((a,b)=>b[1]-a[1]).slice(0,25).map(r=>r[0]);
+  const allPairs   = [...new Set(ALL_DATA.map(r=>r.par_anos))].sort();
+  const heatZ      = topRegions.map(reg =>
+    allPairs.map(pair => {
+      const match = filtered.find(r=>r.zona_nome===reg && r.par_anos===pair);
+      return match ? Math.round(match.area_km2) : 0;
+    })
+  );
+
+  Plotly.newPlot('chartHeat', [{
+    x: allPairs, y: topRegions, z: heatZ,
+    type: 'heatmap', colorscale: 'YlOrRd',
+    hovertemplate: '<b>%{y}</b><br>%{x}<br>%{z:,.0f} km²<extra></extra>',
+    colorbar: {title:{text:'km²', font:{size:11}}, thickness:12, len:0.8, tickformat:',.0f'}
+  }], {
+    ...PLOTLY_LAYOUT,
+    margin:{...PLOTLY_LAYOUT.margin, l:170, b:80},
+    xaxis:{...PLOTLY_LAYOUT.xaxis, tickangle:45, tickfont:{size:10}},
+    yaxis:{...PLOTLY_LAYOUT.yaxis, tickfont:{size:10}}
+  }, {responsive:true, displayModeBar:false});
+  document.getElementById('heatSub').textContent = `Top 25 regions by total area · ${label}`;
+
+  // ── BY STATE ───────────────────────────────────────────────────────────────
+  const ufMap = {};
+  filtered.forEach(r => { ufMap[r.UF] = (ufMap[r.UF]||0) + r.area_km2; });
+  const ufEntries = Object.entries(ufMap).sort((a,b)=>b[1]-a[1]);
+
+  Plotly.newPlot('chartUF', [{
+    x: ufEntries.map(e=>e[0]),
+    y: ufEntries.map(e=>Math.round(e[1])),
+    type:'bar',
+    marker:{color: ufEntries.map((_,i)=>COLORS[i%COLORS.length])},
+    hovertemplate:'<b>%{x}</b><br>%{y:,.0f} km²<extra></extra>',
+    text: ufEntries.map(e=> e[1]>1e4 ? Math.round(e[1]/1000)+'k' : ''),
+    textposition:'outside', cliponaxis:false
+  }], {
+    ...PLOTLY_LAYOUT,
+    yaxis:{...PLOTLY_LAYOUT.yaxis, title:{text:'km²',font:{size:12}}, tickformat:',.0f'},
+    xaxis:{...PLOTLY_LAYOUT.xaxis}
+  }, {responsive:true, displayModeBar:false});
+  document.getElementById('ufSub').textContent = `All years up to ${maxYr} · ${label}`;
+
+  // ── DATA TABLE ─────────────────────────────────────────────────────────────
+  const topRows = [...filtered].sort((a,b)=>b.area_km2-a.area_km2).slice(0,200);
+  const maxVal  = topRows[0]?.area_km2 || 1;
+  const thead   = document.querySelector('#dataTable thead');
+  const tbody   = document.querySelector('#dataTable tbody');
+  thead.innerHTML = `<tr>${['Region','UF','Year Pair','Transition','Area (km²)'].map(h=>`<th>${h}</th>`).join('')}</tr>`;
+  tbody.innerHTML = topRows.map(r => `
+    <tr>
+      <td>${r.zona_nome}</td>
+      <td>${r.UF}</td>
+      <td>${r.par_anos.replace('_','–')}</td>
+      <td>${LABEL[r.transicao]||r.transicao}</td>
+      <td>
+        <div class="bar-cell">
+          <div class="mini-bar" style="width:${Math.max(2,(r.area_km2/maxVal)*120)}px"></div>
+          ${r.area_km2.toLocaleString('en-US',{maximumFractionDigits:1})}
+        </div>
+      </td>
+    </tr>`).join('');
+}
+</script>
+</body>
+</html>

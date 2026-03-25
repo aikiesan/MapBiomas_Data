@@ -1,0 +1,49 @@
+# ArcGIS — never commit
+ABIOVE2026.gdb/
+Abiove_MapBiomas_Soja_2026/
+*.aprx
+*.atbx
+*.lock
+*.sr.lock
+*.pyHistory
+
+# Rasters & large raw data (local only)
+data/rasters/
+data/raw/mapbiomas_zips/
+data/raw/zips/
+MAPBIOMAS_TRANSICOES_COL10/
+Transicoes_Col10/
+Rasters/
+Outputs/
+
+# Large shapefiles (>50MB) — keep only lightweight ones
+data/shapefiles/BR_Municipios_2024/
+data/shapefiles/RG2017_rgint_20180911 (1)/
+
+# Large MapBiomas XLSXs
+data/raw/mapbiomas/MAPBIOMAS_BRAZIL-COVERAGE_STATISTICS-COL.10.1-MUNICIPALITIES_STATES_BIOMES.xlsx
+
+# Large PAM raw tables
+data/raw/pam/Dados_PAM_2024/
+
+# Large processed CSVs
+data/processed/MB_col10_municipios.csv
+data/processed/biomas_5000.csv
+
+# Plotly HTML exports (too large, PNGs are enough)
+figures/*.html
+
+# GIF frames (regenerable)
+figures/gif_frames/
+
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+data/shapefiles/BR_Municipios_2024/
+data/raw/mapbiomas/MAPBIOMAS_BRAZIL-COVERAGE_STATISTICS-COL.10.1-MUNICIPALITIES_STATES_BIOMES.xlsx

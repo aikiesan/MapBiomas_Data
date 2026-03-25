@@ -1,0 +1,7 @@
+﻿nome_rgint,biome,classe,anos_com_dados,mb_media_ha,pam_media_ha,ratio_medio,ratio_min,ratio_max,ratio_std,tendencia_mb,confiabilidade,mb_media_kha,pam_media_kha,gap_medio_kha
+Barreiras,Caatinga,cana,17,3.353,7037.176,0.001,0.0,0.005,0.002,crescente,MB SUBESTIMA MUITO,0.0,7.0,7.0
+Barreiras,Caatinga,soja,17,1009.0,529113.765,0.002,0.0,0.003,0.001,crescente,MB SUBESTIMA MUITO,1.0,529.1,528.1
+Barreiras,Cerrado,soja,17,1256898.824,1423216.176,0.875,0.767,0.962,0.066,crescente,ALTA,1256.9,1423.2,166.3
+Porangatu - Uruaçu,Cerrado,cana,17,116785.118,130176.176,0.9,0.721,1.115,0.123,crescente,MÉDIA,116.8,130.2,13.4
+Porangatu - Uruaçu,Cerrado,soja,17,160495.647,157268.412,1.025,0.754,1.333,0.154,crescente,MÉDIA,160.5,157.3,-3.2
+Porto Velho,Amazônia,soja,17,26802.0,72204.353,0.312,0.018,0.651,0.16,crescente,MB SUBESTIMA MUITO,26.8,72.2,45.4
