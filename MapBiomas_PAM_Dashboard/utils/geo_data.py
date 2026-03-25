@@ -4,6 +4,10 @@ Geospatial data loaders for the MapBiomas × PAM dashboard.
 All loaders use @st.cache_data so heavy file I/O and geometry processing
 happen only once per Streamlit session.
 
+RGINT and biome geometries are loaded from pre-generated GeoJSON files
+(data/processed/rgint_geo.json, data/processed/biomes_geo.json) to avoid
+loading large shapefiles at runtime and keep memory within cloud limits.
+
 Shapefile join keys:
   - RGINT:         gdf['rgint']    (int)  ↔  transitions CSV zona_id (int)
   - Municipalities: gdf['CD_MUN']  (str, 7-digit) ↔ PAM cd_geocodigo (str)
@@ -15,7 +19,6 @@ from __future__ import annotations
 import json
 import pathlib
 
-import geopandas as gpd
 import pandas as pd
 import streamlit as st
 
@@ -25,13 +28,15 @@ _REPO_ROOT = pathlib.Path(__file__).parents[2]
 _SHP_ROOT = _REPO_ROOT / "data" / "shapefiles"
 _DATA_ROOT = _REPO_ROOT / "data"
 
-_RGINT_SHP = _SHP_ROOT / "RG2017_rgint" / "RG2017_rgint.shp"
 _MUN_SHP = _SHP_ROOT / "BR_Municipios_2024" / "BR_Municipios_2024.shp"
-_BIOME_SHP = _SHP_ROOT / "Biomas_250mil" / "lm_bioma_250.shp"
 
 _PAM_DIR = _DATA_ROOT / "raw" / "pam" / "DADOS_PAM_POR_MUNICIPIO_5_CULTURAS"
 _MB_COL10_CSV = _DATA_ROOT / "processed" / "MB_col10_municipios.csv"
 _BIOME_TRANS_CSV = _DATA_ROOT / "processed" / "CSV" / "MB_transicoes_bioma_2008_2024.csv"
+
+# Pre-generated GeoJSON bundles (produced by scripts/generate_geojson.py)
+_RGINT_GEO_JSON = _DATA_ROOT / "processed" / "rgint_geo.json"
+_BIOMES_GEO_JSON = _DATA_ROOT / "processed" / "biomes_geo.json"
 
 # Land-cover class mappings from MB_col10_municipios class_level_2
 COVERAGE_CLASS_MAP: dict[str, str] = {
@@ -74,24 +79,36 @@ COVERAGE_DISPLAY: dict[str, str] = {
 
 
 # ---------------------------------------------------------------------------
-# Intermediate Regions
+# Intermediate Regions — loaded from pre-generated GeoJSON
 # ---------------------------------------------------------------------------
 
-@st.cache_data(show_spinner="Carregando shapefile Regiões Intermediárias…")
+@st.cache_data(show_spinner="Carregando Regiões Intermediárias…")
 def load_rgint_geo() -> tuple[str, pd.DataFrame]:
     """
     Returns (geojson_str, metadata_df).
     metadata_df columns: zona_id (int), nome_rgint (str), uf_code (int)
     GeoJSON featureidkey: 'properties.zona_id'
+
+    Loads from pre-generated data/processed/rgint_geo.json.
+    Falls back to shapefile via geopandas if JSON is absent.
     """
-    gdf = gpd.read_file(_RGINT_SHP)
+    if _RGINT_GEO_JSON.exists():
+        bundle = json.loads(_RGINT_GEO_JSON.read_text(encoding="utf-8"))
+        geojson_str = json.dumps(bundle["geojson"])
+        meta = pd.DataFrame(bundle["meta"])
+        meta["zona_id"] = meta["zona_id"].astype(int)
+        meta["uf_code"] = meta["uf_code"].astype(int)
+        return geojson_str, meta
+
+    # Fallback: load from shapefile (requires geopandas)
+    import geopandas as gpd  # noqa: PLC0415
+    gdf = gpd.read_file(_SHP_ROOT / "RG2017_rgint" / "RG2017_rgint.shp")
     gdf = gdf.to_crs(epsg=4326)
     gdf = gdf.rename(columns={"rgint": "zona_id"})
     gdf["zona_id"] = gdf["zona_id"].astype(int)
     gdf["uf_code"] = (gdf["zona_id"] // 100).astype(int)
-
+    gdf["geometry"] = gdf["geometry"].simplify(tolerance=0.02, preserve_topology=True)
     geojson = json.loads(gdf[["zona_id", "nome_rgint", "geometry"]].to_json())
-
     meta = gdf[["zona_id", "nome_rgint", "uf_code"]].copy()
     return json.dumps(geojson), meta
 
@@ -115,16 +132,14 @@ def load_municipios_geo() -> tuple[str, pd.DataFrame]:
         empty_meta = pd.DataFrame(columns=["cd_geocodigo", "nm_mun", "cd_rgint", "sigla_uf"])
         return empty_geojson, empty_meta
 
+    import geopandas as gpd  # noqa: PLC0415
     gdf = gpd.read_file(_MUN_SHP)
     gdf = gdf.to_crs(epsg=4326)
 
-    # Normalise key to 7-digit string (CD_MUN in 2024 shapefile is 7-digit)
     gdf["cd_geocodigo"] = gdf["CD_MUN"].astype(str).str.zfill(7)
     gdf["cd_rgint"] = gdf["CD_RGINT"].astype(int)
     gdf["nm_mun"] = gdf["NM_MUN"]
     gdf["sigla_uf"] = gdf["SIGLA_UF"]
-
-    # Simplify to reduce GeoJSON size (~5 570 polygons)
     gdf["geometry"] = gdf["geometry"].simplify(tolerance=0.01, preserve_topology=True)
 
     geojson = json.loads(
@@ -135,20 +150,32 @@ def load_municipios_geo() -> tuple[str, pd.DataFrame]:
 
 
 # ---------------------------------------------------------------------------
-# Biomes
+# Biomes — loaded from pre-generated GeoJSON
 # ---------------------------------------------------------------------------
 
-@st.cache_data(show_spinner="Carregando shapefile Biomas…")
+@st.cache_data(show_spinner="Carregando Biomas…")
 def load_biomes_geo() -> tuple[str, pd.DataFrame]:
     """
     Returns (geojson_str, metadata_df).
     metadata_df columns: CD_Bioma (int), Bioma (str)
     GeoJSON featureidkey: 'properties.CD_Bioma'
+
+    Loads from pre-generated data/processed/biomes_geo.json.
+    Falls back to shapefile via geopandas if JSON is absent.
     """
-    gdf = gpd.read_file(_BIOME_SHP)
+    if _BIOMES_GEO_JSON.exists():
+        bundle = json.loads(_BIOMES_GEO_JSON.read_text(encoding="utf-8"))
+        geojson_str = json.dumps(bundle["geojson"])
+        meta = pd.DataFrame(bundle["meta"])
+        meta["CD_Bioma"] = meta["CD_Bioma"].astype(int)
+        return geojson_str, meta
+
+    # Fallback: load from shapefile (requires geopandas)
+    import geopandas as gpd  # noqa: PLC0415
+    gdf = gpd.read_file(_SHP_ROOT / "Biomas_250mil" / "lm_bioma_250.shp")
     gdf = gdf.to_crs(epsg=4326)
     gdf["CD_Bioma"] = gdf["CD_Bioma"].astype(int)
-
+    gdf["geometry"] = gdf["geometry"].simplify(tolerance=0.02, preserve_topology=True)
     geojson = json.loads(gdf[["CD_Bioma", "Bioma", "geometry"]].to_json())
     meta = gdf[["CD_Bioma", "Bioma"]].copy()
     return json.dumps(geojson), meta
@@ -240,19 +267,11 @@ def load_coverage_municipios() -> pd.DataFrame:
 
     df = pd.read_csv(_MB_COL10_CSV, dtype=str)
 
-    # Normalise municipality code — column is 'municipality' but we need the
-    # IBGE code; MB col10 doesn't have a separate code column in standard exports.
-    # Use 'municipality' name + state as display, join via NM_MUN in shapefile.
-    # However if there's a numeric id column use it.
     year_cols = [c for c in df.columns if c.isdigit() and int(c) >= 1985]
 
-    # Map class_level_2 to internal key
     df["class_key"] = df["class_level_2"].map(COVERAGE_CLASS_MAP)
-
-    # Keep only mapped classes
     df = df[df["class_key"].notna()].copy()
 
-    # Melt years
     id_cols = ["biome", "state", "state_acronym", "municipality", "class_key"]
     long = df[id_cols + year_cols].melt(
         id_vars=id_cols,
